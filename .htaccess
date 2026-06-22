@@ -1,0 +1,38 @@
+<IfModule mod_rewrite.c>
+    <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
+
+    RewriteEngine On
+
+    # ==========================================
+    # 1. PERBAIKAN SEO: Hilangkan Akses Kata "public" di URL
+    # ==========================================
+    # Jika pengunjung mencoba mengetik domain.com/public/sesuatu, 
+    # paksa redirect (301) ke domain.com/sesuatu agar SEO tetap bersih
+    RewriteCond %{THE_REQUEST} /public/([^\s?]*) [NC]
+    RewriteRule ^ %1 [L,R=301]
+
+    # ==========================================
+    # 2. PENGALIHAN: Lempar Semua Arus ke Folder Public
+    # ==========================================
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# ==========================================
+# 3. KEAMANAN ULTRA: Blokir Total Semua File Sensitif (Apache 2.2 & 2.4)
+# ==========================================
+# Memblokir berkas .env, database sqlite, git, serta log errors
+<FilesMatch "^\.env|.*\.sqlite$|^\.git|composer\.(json|lock)|package\.json|auth\.json">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order allow,deny
+        Deny from all
+    </IfModule>
+</FilesMatch>
+
+# Proteksi tambahan untuk folder-folder core utama Laravel
+RedirectMatch 301 ^/(vendor|app|bootstrap|config|database|resources|routes|tests)(/.*)?$ /

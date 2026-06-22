@@ -1,0 +1,1292 @@
+[
+  {
+    "id": 1,
+    "nama_tema": "Phinisi Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/phinisi-maroon"
+  },
+  {
+    "id": 2,
+    "nama_tema": "Purple Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/purple-flowers"
+  },
+  {
+    "id": 3,
+    "nama_tema": "Classic Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/classic-wedding"
+  },
+  {
+    "id": 4,
+    "nama_tema": "KUA",
+    "link_preview": "https://inv.galipat-story.com/preview/kua"
+  },
+  {
+    "id": 5,
+    "nama_tema": "Soft Brown",
+    "link_preview": "https://inv.galipat-story.com/preview/soft-brown"
+  },
+  {
+    "id": 6,
+    "nama_tema": "Night Market",
+    "link_preview": "https://inv.galipat-story.com/preview/night-market"
+  },
+  {
+    "id": 7,
+    "nama_tema": "Maroon Aceh",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-aceh"
+  },
+  {
+    "id": 8,
+    "nama_tema": "Sakura Castle",
+    "link_preview": "https://inv.galipat-story.com/preview/sakura-castle"
+  },
+  {
+    "id": 9,
+    "nama_tema": "Soft Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/soft-blue"
+  },
+  {
+    "id": 10,
+    "nama_tema": "Wedding Sale",
+    "link_preview": "https://inv.galipat-story.com/preview/wedding-sale"
+  },
+  {
+    "id": 11,
+    "nama_tema": "Light Blue Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/light-blue-flowers"
+  },
+  {
+    "id": 12,
+    "nama_tema": "Elegant Aceh",
+    "link_preview": "https://inv.galipat-story.com/preview/elegant-aceh"
+  },
+  {
+    "id": 13,
+    "nama_tema": "Betawi Java",
+    "link_preview": "https://inv.galipat-story.com/preview/betawi-java"
+  },
+  {
+    "id": 14,
+    "nama_tema": "Lotus Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/lotus-wedding"
+  },
+  {
+    "id": 15,
+    "nama_tema": "Minimal Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/minimal-wedding"
+  },
+  {
+    "id": 16,
+    "nama_tema": "Red Beige",
+    "link_preview": "https://inv.galipat-story.com/preview/red-beige"
+  },
+  {
+    "id": 17,
+    "nama_tema": "Minangkabau Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/minangkabau-maroon"
+  },
+  {
+    "id": 18,
+    "nama_tema": "Bataknese",
+    "link_preview": "https://inv.galipat-story.com/preview/bataknese"
+  },
+  {
+    "id": 19,
+    "nama_tema": "SpotiLove",
+    "link_preview": "https://inv.galipat-story.com/preview/spotilove"
+  },
+  {
+    "id": 20,
+    "nama_tema": "Pastel Green",
+    "link_preview": "https://inv.galipat-story.com/preview/pastel-green"
+  },
+  {
+    "id": 21,
+    "nama_tema": "Adat Sunda",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-sunda"
+  },
+  {
+    "id": 22,
+    "nama_tema": "Melayu Pastel",
+    "link_preview": "https://inv.galipat-story.com/preview/melayu-pastel"
+  },
+  {
+    "id": 23,
+    "nama_tema": "Rama Shinta",
+    "link_preview": "https://inv.galipat-story.com/preview/rama-shinta"
+  },
+  {
+    "id": 24,
+    "nama_tema": "Elegant Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/elegant-wedding"
+  },
+  {
+    "id": 25,
+    "nama_tema": "Jawa Lampung",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-lampung"
+  },
+  {
+    "id": 26,
+    "nama_tema": "Dayak Toraja",
+    "link_preview": "https://inv.galipat-story.com/preview/dayak-toraja"
+  },
+  {
+    "id": 27,
+    "nama_tema": "Maroon Roses",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-roses"
+  },
+  {
+    "id": 28,
+    "nama_tema": "Palembang Aceh",
+    "link_preview": "https://inv.galipat-story.com/preview/palembang-aceh"
+  },
+  {
+    "id": 29,
+    "nama_tema": "Pastel Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/pastel-blue"
+  },
+  {
+    "id": 30,
+    "nama_tema": "Blue Roses",
+    "link_preview": "https://inv.galipat-story.com/preview/blue-roses"
+  },
+  {
+    "id": 31,
+    "nama_tema": "Mandarin",
+    "link_preview": "https://inv.galipat-story.com/preview/mandarin"
+  },
+  {
+    "id": 32,
+    "nama_tema": "Vintage Forest",
+    "link_preview": "https://inv.galipat-story.com/preview/vintage-forest"
+  },
+  {
+    "id": 33,
+    "nama_tema": "Adat Makassar",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-makassar"
+  },
+  {
+    "id": 34,
+    "nama_tema": "Soft Chinese",
+    "link_preview": "https://inv.galipat-story.com/preview/soft-chinese"
+  },
+  {
+    "id": 35,
+    "nama_tema": "Bugis Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/bugis-maroon"
+  },
+  {
+    "id": 36,
+    "nama_tema": "Jawa x Padang",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-padang"
+  },
+  {
+    "id": 37,
+    "nama_tema": "Maroon Vintage",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-vintage"
+  },
+  {
+    "id": 38,
+    "nama_tema": "Maroon Medieval",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-medieval"
+  },
+  {
+    "id": 39,
+    "nama_tema": "Green Floral",
+    "link_preview": "https://inv.galipat-story.com/preview/green-floral"
+  },
+  {
+    "id": 40,
+    "nama_tema": "Batak Minang",
+    "link_preview": "https://inv.galipat-story.com/preview/batak-minang"
+  },
+  {
+    "id": 41,
+    "nama_tema": "Wedding Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/wedding-flowers"
+  },
+  {
+    "id": 42,
+    "nama_tema": "Adat Batak",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-batak"
+  },
+  {
+    "id": 43,
+    "nama_tema": "Betawi Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/betawi-jawa"
+  },
+  {
+    "id": 44,
+    "nama_tema": "Gold Black Silver",
+    "link_preview": "https://inv.galipat-story.com/preview/gold-black-silver"
+  },
+  {
+    "id": 45,
+    "nama_tema": "Songket",
+    "link_preview": "https://inv.galipat-story.com/preview/songket"
+  },
+  {
+    "id": 46,
+    "nama_tema": "Chestnut Art",
+    "link_preview": "https://inv.galipat-story.com/preview/chestnut-art"
+  },
+  {
+    "id": 47,
+    "nama_tema": "Purple Marble",
+    "link_preview": "https://inv.galipat-story.com/preview/purple-marble"
+  },
+  {
+    "id": 48,
+    "nama_tema": "Merak Biru",
+    "link_preview": "https://inv.galipat-story.com/preview/merak-biru"
+  },
+  {
+    "id": 49,
+    "nama_tema": "Bunga Bunga",
+    "link_preview": "https://inv.galipat-story.com/preview/bunga-bunga"
+  },
+  {
+    "id": 50,
+    "nama_tema": "Betawi Minang",
+    "link_preview": "https://inv.galipat-story.com/preview/betawi-minang"
+  },
+  {
+    "id": 51,
+    "nama_tema": "Midnight Green",
+    "link_preview": "https://inv.galipat-story.com/preview/midnight-green"
+  },
+  {
+    "id": 52,
+    "nama_tema": "Fuchsia Adat",
+    "link_preview": "https://inv.galipat-story.com/preview/fuchsia-adat"
+  },
+  {
+    "id": 53,
+    "nama_tema": "Watercolor Bird",
+    "link_preview": "https://inv.galipat-story.com/preview/watercolor-bird"
+  },
+  {
+    "id": 54,
+    "nama_tema": "Dayak x Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/dayak-jawa"
+  },
+  {
+    "id": 55,
+    "nama_tema": "Brown Passport",
+    "link_preview": "https://inv.galipat-story.com/preview/brown-passport"
+  },
+  {
+    "id": 56,
+    "nama_tema": "Raden",
+    "link_preview": "https://inv.galipat-story.com/preview/raden"
+  },
+  {
+    "id": 57,
+    "nama_tema": "Tuscany Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/tuscany-blue"
+  },
+  {
+    "id": 58,
+    "nama_tema": "Emerald Ampera",
+    "link_preview": "https://inv.galipat-story.com/preview/emerald-ampera"
+  },
+  {
+    "id": 59,
+    "nama_tema": "Padang Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/padang-maroon"
+  },
+  {
+    "id": 60,
+    "nama_tema": "Jawa x Banjar",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-banjar"
+  },
+  {
+    "id": 61,
+    "nama_tema": "Gadang",
+    "link_preview": "https://inv.galipat-story.com/preview/gadang"
+  },
+  {
+    "id": 62,
+    "nama_tema": "Palembang x Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/palembang-jawa"
+  },
+  {
+    "id": 63,
+    "nama_tema": "Banjar x Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/banjar-jawa"
+  },
+  {
+    "id": 64,
+    "nama_tema": "Beautiful Aqsa",
+    "link_preview": "https://inv.galipat-story.com/preview/beautiful-aqsa"
+  },
+  {
+    "id": 65,
+    "nama_tema": "Sakura Theme",
+    "link_preview": "https://inv.galipat-story.com/preview/sakura-theme"
+  },
+  {
+    "id": 66,
+    "nama_tema": "Wayang Kulit",
+    "link_preview": "https://inv.galipat-story.com/preview/wayang-kulit"
+  },
+  {
+    "id": 67,
+    "nama_tema": "Line Art Brown",
+    "link_preview": "https://inv.galipat-story.com/preview/line-art-brown"
+  },
+  {
+    "id": 68,
+    "nama_tema": "Wayang Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/wayang-jawa"
+  },
+  {
+    "id": 69,
+    "nama_tema": "Javanese",
+    "link_preview": "https://inv.galipat-story.com/preview/javanese"
+  },
+  {
+    "id": 70,
+    "nama_tema": "Sunda Minang",
+    "link_preview": "https://inv.galipat-story.com/preview/sunda-minang"
+  },
+  {
+    "id": 71,
+    "nama_tema": "Jawa x Melayu",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-melayu"
+  },
+  {
+    "id": 72,
+    "nama_tema": "Newspaper",
+    "link_preview": "https://inv.galipat-story.com/preview/newspaper"
+  },
+  {
+    "id": 73,
+    "nama_tema": "Padang",
+    "link_preview": "https://inv.galipat-story.com/preview/padang"
+  },
+  {
+    "id": 74,
+    "nama_tema": "Toraja",
+    "link_preview": "https://inv.galipat-story.com/preview/toraja"
+  },
+  {
+    "id": 75,
+    "nama_tema": "Rounded Luxurious",
+    "link_preview": "https://inv.galipat-story.com/preview/rounded-luxurious"
+  },
+  {
+    "id": 76,
+    "nama_tema": "Melayu",
+    "link_preview": "https://inv.galipat-story.com/preview/melayu"
+  },
+  {
+    "id": 77,
+    "nama_tema": "Minimalist Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/minimalist-blue"
+  },
+  {
+    "id": 78,
+    "nama_tema": "Artichoke",
+    "link_preview": "https://inv.galipat-story.com/preview/artichoke"
+  },
+  {
+    "id": 79,
+    "nama_tema": "Turkish Green",
+    "link_preview": "https://inv.galipat-story.com/preview/turkish-green"
+  },
+  {
+    "id": 80,
+    "nama_tema": "Maroon Javanese",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-javanese"
+  },
+  {
+    "id": 81,
+    "nama_tema": "Adat Aceh",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-aceh"
+  },
+  {
+    "id": 82,
+    "nama_tema": "Child Cafe",
+    "link_preview": "https://inv.galipat-story.com/preview/child-cafe"
+  },
+  {
+    "id": 83,
+    "nama_tema": "Feminime Javanese",
+    "link_preview": "https://inv.galipat-story.com/preview/feminime-javanese"
+  },
+  {
+    "id": 84,
+    "nama_tema": "Adat Bugis",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-bugis-flat"
+  },
+  {
+    "id": 85,
+    "nama_tema": "Art Blue Java",
+    "link_preview": "https://inv.galipat-story.com/preview/art-blue-java"
+  },
+  {
+    "id": 86,
+    "nama_tema": "Maroon Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-flowers"
+  },
+  {
+    "id": 87,
+    "nama_tema": "Red Lampung",
+    "link_preview": "https://inv.galipat-story.com/preview/red-lampung"
+  },
+  {
+    "id": 88,
+    "nama_tema": "Novianty",
+    "link_preview": "https://inv.galipat-story.com/preview/novianty"
+  },
+  {
+    "id": 89,
+    "nama_tema": "Floral Purple",
+    "link_preview": "https://inv.galipat-story.com/preview/floral-purple"
+  },
+  {
+    "id": 90,
+    "nama_tema": "Cream Lampung",
+    "link_preview": "https://inv.galipat-story.com/preview/cream-lampung"
+  },
+  {
+    "id": 91,
+    "nama_tema": "Kuda Macan",
+    "link_preview": "https://inv.galipat-story.com/preview/kuda-macan"
+  },
+  {
+    "id": 92,
+    "nama_tema": "Maroon and Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-and-blue"
+  },
+  {
+    "id": 93,
+    "nama_tema": "Simple Brown",
+    "link_preview": "https://inv.galipat-story.com/preview/simple-brown"
+  },
+  {
+    "id": 94,
+    "nama_tema": "Bugis Emerald",
+    "link_preview": "https://inv.galipat-story.com/preview/bugis-emerald"
+  },
+  {
+    "id": 95,
+    "nama_tema": "Watercolor Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/watercolor-flowers"
+  },
+  {
+    "id": 96,
+    "nama_tema": "Peacocks",
+    "link_preview": "https://inv.galipat-story.com/preview/peacocks"
+  },
+  {
+    "id": 97,
+    "nama_tema": "Jawa Biru",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-biru"
+  },
+  {
+    "id": 98,
+    "nama_tema": "Cathrine",
+    "link_preview": "https://inv.galipat-story.com/preview/cathrine"
+  },
+  {
+    "id": 99,
+    "nama_tema": "White Gold",
+    "link_preview": "https://inv.galipat-story.com/preview/white-gold"
+  },
+  {
+    "id": 100,
+    "nama_tema": "Dayak Kalbar",
+    "link_preview": "https://inv.galipat-story.com/preview/dayak-kalbar"
+  },
+  {
+    "id": 101,
+    "nama_tema": "Tropical Plants",
+    "link_preview": "https://inv.galipat-story.com/preview/tropical-plants"
+  },
+  {
+    "id": 102,
+    "nama_tema": "Wedding Passport",
+    "link_preview": "https://inv.galipat-story.com/preview/wedding-passport"
+  },
+  {
+    "id": 103,
+    "nama_tema": "Adat Bone",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-bone"
+  },
+  {
+    "id": 104,
+    "nama_tema": "Elegant Red",
+    "link_preview": "https://inv.galipat-story.com/preview/elegant-red"
+  },
+  {
+    "id": 105,
+    "nama_tema": "Aceh x Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/aceh-jawa"
+  },
+  {
+    "id": 106,
+    "nama_tema": "Peony",
+    "link_preview": "https://inv.galipat-story.com/preview/peony"
+  },
+  {
+    "id": 107,
+    "nama_tema": "Green Motion",
+    "link_preview": "https://inv.galipat-story.com/preview/green-motion"
+  },
+  {
+    "id": 108,
+    "nama_tema": "Sage Green",
+    "link_preview": "https://inv.galipat-story.com/preview/sage-green"
+  },
+  {
+    "id": 109,
+    "nama_tema": "Kerawang Gayo",
+    "link_preview": "https://inv.galipat-story.com/preview/kerawang-gayo"
+  },
+  {
+    "id": 110,
+    "nama_tema": "Bugis Culture",
+    "link_preview": "https://inv.galipat-story.com/preview/bugis-culture"
+  },
+  {
+    "id": 111,
+    "nama_tema": "Pink Korea",
+    "link_preview": "https://inv.galipat-story.com/preview/pink-korea"
+  },
+  {
+    "id": 112,
+    "nama_tema": "Maroon Art",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-art"
+  },
+  {
+    "id": 113,
+    "nama_tema": "Red Batak",
+    "link_preview": "https://inv.galipat-story.com/preview/red-batak"
+  },
+  {
+    "id": 114,
+    "nama_tema": "Adat Betawi",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-betawi"
+  },
+  {
+    "id": 115,
+    "nama_tema": "Phinisi",
+    "link_preview": "https://inv.galipat-story.com/preview/phinisi"
+  },
+  {
+    "id": 116,
+    "nama_tema": "Simple Bugis",
+    "link_preview": "https://inv.galipat-story.com/preview/simple-bugis"
+  },
+  {
+    "id": 117,
+    "nama_tema": "Adat Sumatera",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-sumatera"
+  },
+  {
+    "id": 118,
+    "nama_tema": "Aysha",
+    "link_preview": "https://inv.galipat-story.com/preview/aysha"
+  },
+  {
+    "id": 119,
+    "nama_tema": "Angela",
+    "link_preview": "https://inv.galipat-story.com/preview/angela"
+  },
+  {
+    "id": 120,
+    "nama_tema": "Green Tropical",
+    "link_preview": "https://inv.galipat-story.com/preview/green-tropical"
+  },
+  {
+    "id": 121,
+    "nama_tema": "Salsa",
+    "link_preview": "https://inv.galipat-story.com/preview/salsa"
+  },
+  {
+    "id": 122,
+    "nama_tema": "Jawa Minang",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-minang"
+  },
+  {
+    "id": 123,
+    "nama_tema": "Emily",
+    "link_preview": "https://inv.galipat-story.com/preview/emily"
+  },
+  {
+    "id": 124,
+    "nama_tema": "Blue Casanova",
+    "link_preview": "https://inv.galipat-story.com/preview/blue-casanova"
+  },
+  {
+    "id": 125,
+    "nama_tema": "Java Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/java-blue"
+  },
+  {
+    "id": 126,
+    "nama_tema": "Adat Minang",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-minang"
+  },
+  {
+    "id": 127,
+    "nama_tema": "Cream Purple",
+    "link_preview": "https://inv.galipat-story.com/preview/cream-purple"
+  },
+  {
+    "id": 128,
+    "nama_tema": "Black Coral",
+    "link_preview": "https://inv.galipat-story.com/preview/black-coral"
+  },
+  {
+    "id": 129,
+    "nama_tema": "Lilaq Feather",
+    "link_preview": "https://inv.galipat-story.com/preview/lilaq-feather"
+  },
+  {
+    "id": 130,
+    "nama_tema": "Vintage Cream",
+    "link_preview": "https://inv.galipat-story.com/preview/vintage-cream"
+  },
+  {
+    "id": 131,
+    "nama_tema": "Adat Karo",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-karo"
+  },
+  {
+    "id": 132,
+    "nama_tema": "Adat Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-jawa"
+  },
+  {
+    "id": 133,
+    "nama_tema": "Minang Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/minang-maroon"
+  },
+  {
+    "id": 134,
+    "nama_tema": "Minimalist Pink",
+    "link_preview": "https://inv.galipat-story.com/preview/minimalist-pink"
+  },
+  {
+    "id": 135,
+    "nama_tema": "Brown Leaves",
+    "link_preview": "https://inv.galipat-story.com/preview/brown-leaves"
+  },
+  {
+    "id": 136,
+    "nama_tema": "Watercolor Peacock",
+    "link_preview": "https://inv.galipat-story.com/preview/watercolor-peacock"
+  },
+  {
+    "id": 137,
+    "nama_tema": "Maroon Watercolor",
+    "link_preview": "https://inv.galipat-story.com/preview/maroon-watercolor"
+  },
+  {
+    "id": 138,
+    "nama_tema": "Mandala V2",
+    "link_preview": "https://inv.galipat-story.com/preview/mandala-v2"
+  },
+  {
+    "id": 139,
+    "nama_tema": "Esther",
+    "link_preview": "https://inv.galipat-story.com/preview/esther"
+  },
+  {
+    "id": 140,
+    "nama_tema": "Imperial Flower",
+    "link_preview": "https://inv.galipat-story.com/preview/imperial-flower"
+  },
+  {
+    "id": 141,
+    "nama_tema": "Pink Feather",
+    "link_preview": "https://inv.galipat-story.com/preview/pink-feather"
+  },
+  {
+    "id": 142,
+    "nama_tema": "Selpia",
+    "link_preview": "https://inv.galipat-story.com/preview/selpia"
+  },
+  {
+    "id": 143,
+    "nama_tema": "Islamic Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/islamic-wedding"
+  },
+  {
+    "id": 144,
+    "nama_tema": "Lavender",
+    "link_preview": "https://inv.galipat-story.com/preview/lavender"
+  },
+  {
+    "id": 145,
+    "nama_tema": "Cream Cute",
+    "link_preview": "https://inv.galipat-story.com/preview/cream-cute"
+  },
+  {
+    "id": 146,
+    "nama_tema": "Boho Terracotta",
+    "link_preview": "https://inv.galipat-story.com/preview/boho-terracotta"
+  },
+  {
+    "id": 147,
+    "nama_tema": "Navy Pink",
+    "link_preview": "https://inv.galipat-story.com/preview/navy-pink"
+  },
+  {
+    "id": 148,
+    "nama_tema": "Pink Watercolor",
+    "link_preview": "https://inv.galipat-story.com/preview/pink-watercolor"
+  },
+  {
+    "id": 149,
+    "nama_tema": "Mandaling",
+    "link_preview": "https://inv.galipat-story.com/preview/mandaling"
+  },
+  {
+    "id": 150,
+    "nama_tema": "Red Berry V2",
+    "link_preview": "https://inv.galipat-story.com/preview/red-berry-2"
+  },
+  {
+    "id": 151,
+    "nama_tema": "Cute Java",
+    "link_preview": "https://inv.galipat-story.com/preview/cute-java"
+  },
+  {
+    "id": 152,
+    "nama_tema": "Chinese Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/chinese-wedding"
+  },
+  {
+    "id": 153,
+    "nama_tema": "Luxury purple",
+    "link_preview": "https://inv.galipat-story.com/preview/luxury-purple"
+  },
+  {
+    "id": 154,
+    "nama_tema": "Banjar Kuning",
+    "link_preview": "https://inv.galipat-story.com/preview/banjar-kuning"
+  },
+  {
+    "id": 155,
+    "nama_tema": "Victorian Cupid",
+    "link_preview": "https://inv.galipat-story.com/preview/victorian-cupid"
+  },
+  {
+    "id": 156,
+    "nama_tema": "Luxury Navy",
+    "link_preview": "https://inv.galipat-story.com/preview/luxury-navy"
+  },
+  {
+    "id": 157,
+    "nama_tema": "Wedding Watercolor",
+    "link_preview": "https://inv.galipat-story.com/preview/wedding-watercolor"
+  },
+  {
+    "id": 158,
+    "nama_tema": "Aesthetic Victorian",
+    "link_preview": "https://inv.galipat-story.com/preview/aesthetic-victorian"
+  },
+  {
+    "id": 159,
+    "nama_tema": "Luxury Green",
+    "link_preview": "https://inv.galipat-story.com/preview/luxury-green"
+  },
+  {
+    "id": 160,
+    "nama_tema": "Bugis Pink",
+    "link_preview": "https://inv.galipat-story.com/preview/bugis-pink"
+  },
+  {
+    "id": 161,
+    "nama_tema": "Midnight Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/midnight-blue"
+  },
+  {
+    "id": 162,
+    "nama_tema": "Luxury Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/luxury-maroon"
+  },
+  {
+    "id": 163,
+    "nama_tema": "Pacman",
+    "link_preview": "https://inv.galipat-story.com/preview/pacman"
+  },
+  {
+    "id": 164,
+    "nama_tema": "Terracotta",
+    "link_preview": "https://inv.galipat-story.com/preview/terracotta"
+  },
+  {
+    "id": 165,
+    "nama_tema": "Black and White",
+    "link_preview": "https://inv.galipat-story.com/preview/black-and-white"
+  },
+  {
+    "id": 166,
+    "nama_tema": "Green Pink",
+    "link_preview": "https://inv.galipat-story.com/preview/green-pink"
+  },
+  {
+    "id": 167,
+    "nama_tema": "Green Watercolor",
+    "link_preview": "https://inv.galipat-story.com/preview/green-watercolor"
+  },
+  {
+    "id": 168,
+    "nama_tema": "Adat Bugis",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-bugis"
+  },
+  {
+    "id": 169,
+    "nama_tema": "Mesir",
+    "link_preview": "https://inv.galipat-story.com/preview/mesir"
+  },
+  {
+    "id": 170,
+    "nama_tema": "Jawa Asli",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-asli"
+  },
+  {
+    "id": 171,
+    "nama_tema": "Luxury Golden V2",
+    "link_preview": "https://inv.galipat-story.com/preview/luxury-golden-v2"
+  },
+  {
+    "id": 172,
+    "nama_tema": "Jasper Orange",
+    "link_preview": "https://inv.galipat-story.com/preview/jasper-orange"
+  },
+  {
+    "id": 173,
+    "nama_tema": "Sunflower",
+    "link_preview": "https://inv.galipat-story.com/preview/sunflower"
+  },
+  {
+    "id": 174,
+    "nama_tema": "Dried Leaves V2",
+    "link_preview": "https://inv.galipat-story.com/preview/dried-leaves-2"
+  },
+  {
+    "id": 175,
+    "nama_tema": "Ondel Ondel",
+    "link_preview": "https://inv.galipat-story.com/preview/ondel-ondel"
+  },
+  {
+    "id": 176,
+    "nama_tema": "Bugis Minang",
+    "link_preview": "https://inv.galipat-story.com/preview/bugis-minang"
+  },
+  {
+    "id": 177,
+    "nama_tema": "Almond Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/almond-flowers"
+  },
+  {
+    "id": 178,
+    "nama_tema": "FIXNIKAH",
+    "link_preview": "https://inv.galipat-story.com/preview/nikahfix"
+  },
+  {
+    "id": 179,
+    "nama_tema": "Camelia",
+    "link_preview": "https://inv.galipat-story.com/preview/camelia"
+  },
+  {
+    "id": 180,
+    "nama_tema": "Azureish White",
+    "link_preview": "https://inv.galipat-story.com/preview/azureish-white"
+  },
+  {
+    "id": 181,
+    "nama_tema": "Jawa x Bugis",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-bugis"
+  },
+  {
+    "id": 182,
+    "nama_tema": "Tree of Bird",
+    "link_preview": "https://inv.galipat-story.com/preview/tree-of-bird"
+  },
+  {
+    "id": 183,
+    "nama_tema": "Crayola Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/crayola-flowers"
+  },
+  {
+    "id": 184,
+    "nama_tema": "Golden Watercolor",
+    "link_preview": "https://inv.galipat-story.com/preview/golden-watercolor"
+  },
+  {
+    "id": 185,
+    "nama_tema": "Kamboja",
+    "link_preview": "https://inv.galipat-story.com/preview/kamboja"
+  },
+  {
+    "id": 186,
+    "nama_tema": "Dholpin Green",
+    "link_preview": "https://inv.galipat-story.com/preview/dolphin-green"
+  },
+  {
+    "id": 187,
+    "nama_tema": "Adat Papua",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-papua"
+  },
+  {
+    "id": 188,
+    "nama_tema": "Elegant Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/elegant-blue"
+  },
+  {
+    "id": 189,
+    "nama_tema": "Brown Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/brown-flowers"
+  },
+  {
+    "id": 190,
+    "nama_tema": "Black Java",
+    "link_preview": "https://inv.galipat-story.com/preview/black-java"
+  },
+  {
+    "id": 191,
+    "nama_tema": "Javanese Wayang",
+    "link_preview": "https://inv.galipat-story.com/preview/javanese-wayang"
+  },
+  {
+    "id": 192,
+    "nama_tema": "Green Roses",
+    "link_preview": "https://inv.galipat-story.com/preview/green-roses"
+  },
+  {
+    "id": 193,
+    "nama_tema": "Blue Javanese",
+    "link_preview": "https://inv.galipat-story.com/preview/blue-javanese"
+  },
+  {
+    "id": 194,
+    "nama_tema": "Blue Watercolor",
+    "link_preview": "https://inv.galipat-story.com/preview/blue-watercolor"
+  },
+  {
+    "id": 195,
+    "nama_tema": "Creamy Coral",
+    "link_preview": "https://inv.galipat-story.com/preview/creamy-coral"
+  },
+  {
+    "id": 196,
+    "nama_tema": "Casanova",
+    "link_preview": "https://inv.galipat-story.com/preview/casanova"
+  },
+  {
+    "id": 197,
+    "nama_tema": "Aesthetic Java",
+    "link_preview": "https://inv.galipat-story.com/preview/aesthetic-java"
+  },
+  {
+    "id": 198,
+    "nama_tema": "Navy Flowers",
+    "link_preview": "https://inv.galipat-story.com/preview/navy-flowers"
+  },
+  {
+    "id": 199,
+    "nama_tema": "Biru Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/biru-jawa"
+  },
+  {
+    "id": 200,
+    "nama_tema": "Beautiful Flower",
+    "link_preview": "https://inv.galipat-story.com/preview/beautiful-flower"
+  },
+  {
+    "id": 201,
+    "nama_tema": "Dayak x Java",
+    "link_preview": "https://inv.galipat-story.com/preview/dayak-java"
+  },
+  {
+    "id": 202,
+    "nama_tema": "Ylang Ylang",
+    "link_preview": "https://inv.galipat-story.com/preview/ylang-ylang"
+  },
+  {
+    "id": 203,
+    "nama_tema": "Sunda x Aceh",
+    "link_preview": "https://inv.galipat-story.com/preview/sunda-aceh"
+  },
+  {
+    "id": 204,
+    "nama_tema": "Maple Gold",
+    "link_preview": "https://inv.galipat-story.com/preview/maple-gold"
+  },
+  {
+    "id": 205,
+    "nama_tema": "Timeless",
+    "link_preview": "https://inv.galipat-story.com/preview/timeless"
+  },
+  {
+    "id": 206,
+    "nama_tema": "Leaves Design",
+    "link_preview": "https://inv.galipat-story.com/preview/leaves-design"
+  },
+  {
+    "id": 207,
+    "nama_tema": "Vintage Moment",
+    "link_preview": "https://inv.galipat-story.com/preview/vintage-moment"
+  },
+  {
+    "id": 208,
+    "nama_tema": "Ampera Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/ampera-maroon"
+  },
+  {
+    "id": 209,
+    "nama_tema": "Palembang Lampung",
+    "link_preview": "https://inv.galipat-story.com/preview/palembang-lampung"
+  },
+  {
+    "id": 210,
+    "nama_tema": "Engagement",
+    "link_preview": "https://inv.galipat-story.com/preview/engagement"
+  },
+  {
+    "id": 211,
+    "nama_tema": "Auntumn",
+    "link_preview": "https://inv.galipat-story.com/preview/auntumn"
+  },
+  {
+    "id": 212,
+    "nama_tema": "Romantic Floral",
+    "link_preview": "https://inv.galipat-story.com/preview/romantic-floral"
+  },
+  {
+    "id": 213,
+    "nama_tema": "Javanese Pastel",
+    "link_preview": "https://inv.galipat-story.com/preview/javanese-pastel"
+  },
+  {
+    "id": 214,
+    "nama_tema": "Pakpak x Banjar",
+    "link_preview": "https://inv.galipat-story.com/preview/pakpak-banjar"
+  },
+  {
+    "id": 215,
+    "nama_tema": "Cream Japan",
+    "link_preview": "https://inv.galipat-story.com/preview/cream-japan"
+  },
+  {
+    "id": 216,
+    "nama_tema": "Sundar Bageecha",
+    "link_preview": "https://inv.galipat-story.com/preview/sundar-bageecha"
+  },
+  {
+    "id": 217,
+    "nama_tema": "Adat Selaso",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-selaso"
+  },
+  {
+    "id": 218,
+    "nama_tema": "White Kingdom",
+    "link_preview": "https://inv.galipat-story.com/preview/white-kingdom"
+  },
+  {
+    "id": 219,
+    "nama_tema": "Red Carmine",
+    "link_preview": "https://inv.galipat-story.com/preview/red-carmine"
+  },
+  {
+    "id": 220,
+    "nama_tema": "Medieval Kingdom",
+    "link_preview": "https://inv.galipat-story.com/preview/medieval-kingdom"
+  },
+  {
+    "id": 221,
+    "nama_tema": "Dark Brown",
+    "link_preview": "https://inv.galipat-story.com/preview/dark-brown"
+  },
+  {
+    "id": 222,
+    "nama_tema": "Ethnic Pattern",
+    "link_preview": "https://inv.galipat-story.com/preview/ethnic-pattern"
+  },
+  {
+    "id": 223,
+    "nama_tema": "Javanese Purple",
+    "link_preview": "https://inv.galipat-story.com/preview/javanese-purple"
+  },
+  {
+    "id": 224,
+    "nama_tema": "Yoru No Ryusei",
+    "link_preview": "https://inv.galipat-story.com/preview/yoru-no-ryusei"
+  },
+  {
+    "id": 225,
+    "nama_tema": "Under The Sea",
+    "link_preview": "https://inv.galipat-story.com/preview/under-the-sea"
+  },
+  {
+    "id": 226,
+    "nama_tema": "Vintage Peacock",
+    "link_preview": "https://inv.galipat-story.com/preview/vintage-peacock"
+  },
+  {
+    "id": 227,
+    "nama_tema": "Blue White",
+    "link_preview": "https://inv.galipat-story.com/preview/blue-white"
+  },
+  {
+    "id": 228,
+    "nama_tema": "Classic Parthenon",
+    "link_preview": "https://inv.galipat-story.com/preview/classic-parthenon"
+  },
+  {
+    "id": 229,
+    "nama_tema": "Dayak Kalteng",
+    "link_preview": "https://inv.galipat-story.com/preview/dayak-kalteng"
+  },
+  {
+    "id": 230,
+    "nama_tema": "Wonderful",
+    "link_preview": "https://inv.galipat-story.com/preview/wonderful"
+  },
+  {
+    "id": 231,
+    "nama_tema": "Adat Rote",
+    "link_preview": "https://inv.galipat-story.com/preview/adat-rote"
+  },
+  {
+    "id": 232,
+    "nama_tema": "Hand Drawn",
+    "link_preview": "https://inv.galipat-story.com/preview/hand-drawn"
+  },
+  {
+    "id": 233,
+    "nama_tema": "Jawa Palembang",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-palembang"
+  },
+  {
+    "id": 234,
+    "nama_tema": "Java Maroon",
+    "link_preview": "https://inv.galipat-story.com/preview/java-maroon"
+  },
+  {
+    "id": 235,
+    "nama_tema": "Sumbawa Jawa",
+    "link_preview": "https://inv.galipat-story.com/preview/sumbawa-jawa"
+  },
+  {
+    "id": 236,
+    "nama_tema": "Wedding Celebration",
+    "link_preview": "https://inv.galipat-story.com/preview/wedding-celebration"
+  },
+  {
+    "id": 237,
+    "nama_tema": "Rumah Gadang",
+    "link_preview": "https://inv.galipat-story.com/preview/rumah-gadang"
+  },
+  {
+    "id": 238,
+    "nama_tema": "Boho Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/boho-wedding"
+  },
+  {
+    "id": 239,
+    "nama_tema": "Forever Journey",
+    "link_preview": "https://inv.galipat-story.com/preview/forever-journey"
+  },
+  {
+    "id": 240,
+    "nama_tema": "Pink Blossom",
+    "link_preview": "https://inv.galipat-story.com/preview/pink-blossom"
+  },
+  {
+    "id": 241,
+    "nama_tema": "Daisy Gray",
+    "link_preview": "https://inv.galipat-story.com/preview/daisy-gray"
+  },
+  {
+    "id": 242,
+    "nama_tema": "Blue Floral",
+    "link_preview": "https://inv.galipat-story.com/preview/blue-floral"
+  },
+  {
+    "id": 243,
+    "nama_tema": "Galungan",
+    "link_preview": "https://inv.galipat-story.com/preview/galungan"
+  },
+  {
+    "id": 244,
+    "nama_tema": "Jawa Nias",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-nias"
+  },
+  {
+    "id": 245,
+    "nama_tema": "Colored Beach",
+    "link_preview": "https://inv.galipat-story.com/preview/colored-beach"
+  },
+  {
+    "id": 246,
+    "nama_tema": "Ice Silver",
+    "link_preview": "https://inv.galipat-story.com/preview/ice-silver"
+  },
+  {
+    "id": 247,
+    "nama_tema": "Pink Bird",
+    "link_preview": "https://inv.galipat-story.com/preview/pink-bird"
+  },
+  {
+    "id": 248,
+    "nama_tema": "Jawa x Betawi",
+    "link_preview": "https://inv.galipat-story.com/preview/jawa-betawi"
+  },
+  {
+    "id": 249,
+    "nama_tema": "Minimalist Black",
+    "link_preview": "https://inv.galipat-story.com/preview/minimalist-black"
+  },
+  {
+    "id": 250,
+    "nama_tema": "Magic School",
+    "link_preview": "https://inv.galipat-story.com/preview/magic-school"
+  },
+  {
+    "id": 251,
+    "nama_tema": "Vine Flower",
+    "link_preview": "https://inv.galipat-story.com/preview/vine-flower"
+  },
+  {
+    "id": 252,
+    "nama_tema": "Blue Wedding",
+    "link_preview": "https://inv.galipat-story.com/preview/blue-wedding"
+  },
+  {
+    "id": 253,
+    "nama_tema": "Classic Blue",
+    "link_preview": "https://inv.galipat-story.com/preview/classic-blue"
+  },
+  {
+    "id": 254,
+    "nama_tema": "Pinto Aceh",
+    "link_preview": "https://inv.galipat-story.com/preview/pinto-aceh"
+  },
+  {
+    "id": 255,
+    "nama_tema": "Betawi Vintage",
+    "link_preview": "https://inv.galipat-story.com/preview/betawi-vintage"
+  },
+  {
+    "id": 256,
+    "nama_tema": "Budaya Aceh",
+    "link_preview": "https://inv.galipat-story.com/preview/budaya-aceh"
+  },
+  {
+    "id": 257,
+    "nama_tema": "Green Passport",
+    "link_preview": "https://inv.galipat-story.com/preview/green-passport"
+  },
+  {
+    "id": 258,
+    "nama_tema": "Red Rustic",
+    "link_preview": "https://inv.galipat-story.com/preview/red-rustic"
+  }
+]
