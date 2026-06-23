@@ -7,6 +7,7 @@ use App\Models\Order;
 use Carbon\Carbon;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Illuminate\Support\Facades\DB;
 
 class Dashboard extends Component
 {
@@ -33,12 +34,21 @@ class Dashboard extends Component
             ->take(5)
             ->get();
 
+        // 5. Tema paling diminati (dari theme_name, exclude null)
+        $popularThemes = Order::whereNotNull('theme_name')
+            ->select('theme_name', DB::raw('count(*) as total'))
+            ->groupBy('theme_name')
+            ->orderByDesc('total')
+            ->take(10)
+            ->get();
+
         return view('livewire.admin.dashboard', [
-            'pendingCount'  => $pendingCount,
-            'progressCount' => $progressCount,
-            'doneCount'     => $doneCount,
-            'grossRevenue'  => $grossRevenue,
-            'latestOrders'  => $latestOrders,
+            'pendingCount'   => $pendingCount,
+            'progressCount'  => $progressCount,
+            'doneCount'      => $doneCount,
+            'grossRevenue'   => $grossRevenue,
+            'latestOrders'   => $latestOrders,
+            'popularThemes'  => $popularThemes,
         ])->layout('components.layouts.admin');
     }
 }

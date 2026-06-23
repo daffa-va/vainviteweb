@@ -4,29 +4,29 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Va Invite — Pembuatan Undangan Digital</title>
+    <title>Va Invite — Undangan Digital</title>
 
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/icon.ico') }}">
 
     <meta name="description"
-        content="Va Invite menyediakan jasa joki tugas sekolah & kuliah (makalah, PPT Canva, poster), cetak spanduk banner, dan desain feed Instagram profesional harga terjangkau." />
+        content="Va Invite — undangan digital premium untuk pernikahan, ulang tahun, aqiqah, syukuran, dan acara spesial lainnya. Desain elegan, siap sebar, harga terjangkau." />
     <meta name="keywords"
-        content="joki tugas, jasa pembuatan makalah, joki ppt kuliah, jasa desain feed instagram, jasa desain poster, bikin spanduk murah, va invite lombok, joki tugas sekolah" />
+        content="undangan digital, undangan online, undangan pernikahan, undangan ulang tahun, undangan aqiqah, undangan syukuran, undangan digital murah, va invite, undangan website, undangan link" />
     <meta name="robots" content="index, follow" />
     <meta name="author" content="Va Invite" />
     <link rel="canonical" href="{{ url()->current() }}" />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:title" content="Va Invite — Pembuatan Undangan Digital" />
+    <meta property="og:title" content="Va Invite — Undangan Digital" />
     <meta property="og:description"
-        content="Solusi joki tugas sekolah, kuliah, presentasi PPT, makalah, cetak spanduk, dan desain media sosial harga bersahabat." />
+        content="Undangan digital premium untuk acara spesialmu. Desain elegan, siap sebar, harga bersahabat." />
     <meta property="og:image" content="{{ asset('assets/img/logo.jpeg') }}" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Va Invite — Pembuatan Undangan Digital" />
+    <meta name="twitter:title" content="Va Invite — Undangan Digital" />
     <meta name="twitter:description"
-        content="Jasa pembuatan makalah, PPT Canva, spanduk, banner, poster, dan feed Instagram pengerjaan cepat." />
+        content="Undangan digital premium untuk acara spesialmu. Desain elegan, siap sebar." />
     <meta name="twitter:image" content="{{ asset('assets/img/logo.jpeg') }}" />
 
     <script type="application/ld+json">
@@ -35,7 +35,7 @@
   "@@type": "LocalBusiness",
   "name": "Va Invite",
   "image": "{{ asset('assets/img/logo.jpeg') }}",
-  "description": "Penyedia jasa joki tugas sekolah/kuliah, pembuatan makalah, PPT, desain spanduk, banner, dan manajemen konten media sosial.",
+  "description": "Penyedia undangan digital premium untuk pernikahan, ulang tahun, aqiqah, syukuran, dan acara spesial lainnya.",
   "telephone": "+6287760058673",
   "url": "{{ url('/') }}",
   "priceRange": "RP",
@@ -90,11 +90,13 @@
                 <span></span><span></span><span></span>
             </button>
             <ul class="nav-links" id="navLinks">
-                <li><a href="#services">Layanan</a></li>
+                <li><a href="#services">Fitur</a></li>
+                <li><a href="#catalog">Katalog</a></li>
+                <li><a href="#steps">Cara Order</a></li>
                 <li><a href="#pricing">Harga</a></li>
                 <li><a href="#why">Keunggulan</a></li>
                 <li>
-                    <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20VA%20Design!%20Saya%20mau%20order%20jasa%20desain%2Ftugas%20nih%20%F0%9F%99%8F"
+                    <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
                         target="_blank" class="btn-nav"><i class="fa-solid fa-cart-shopping icon-spacing"></i> Order
                         Sekarang</a>
                 </li>
@@ -110,7 +112,7 @@
         <div class="hero-content">
             <div class="hero-badge reveal">
                 <i class="fa-solid fa-star icon-spacing" style="color: var(--white); opacity: 0.6"></i>
-Pembuatan Undangan Digital
+Undangan Digital
             </div>
             <h1 class="hero-title reveal">
                 <span class="line">Buat hari Spesial anda</span>
@@ -120,20 +122,29 @@ Pembuatan Undangan Digital
                 Solusi lengkap untuk pembuatan undangan digital pernikahan, akad, ulang tahun, & acara spesialmu.<br />
                 Desain elegan · Siap sebar
             </p>
-            <div class="hero-preview reveal">
-                <div class="preview-imgs">
-                    <img src="{{ asset('assets/img/themes/timeless.webp') }}" alt="Timeless" class="preview-img" />
-                    <img src="{{ asset('assets/img/themes/peony.webp') }}" alt="Peony" class="preview-img" />
-                    <img src="{{ asset('assets/img/themes/phinisi.webp') }}" alt="Phinisi" class="preview-img" />
-                    <img src="{{ asset('assets/img/themes/javanese-purple.webp') }}" alt="Javanese Purple" class="preview-img" />
-                    <img src="{{ asset('assets/img/themes/blue-casanova.webp') }}" alt="Blue Casanova" class="preview-img" />
-                    <img src="{{ asset('assets/img/themes/kerawang-gayo.webp') }}" alt="Kerawang Gayo" class="preview-img" />
+            <div class="hero-devices reveal">
+                <div class="device device-phone">
+                    <div class="device-notch"></div>
+                    <div class="device-screen">
+                        <img src="{{ asset('assets/img/themes/timeless.webp') }}" alt="Timeless" class="device-img" />
+                    </div>
                 </div>
-                <span class="preview-label">+252 tema lainnya</span>
+                <div class="device device-laptop">
+                    <div class="device-screen">
+                        <img src="{{ asset('assets/img/themes/peony.webp') }}" alt="Peony" class="device-img" />
+                    </div>
+                    <div class="device-keyboard"></div>
+                </div>
+                <div class="device device-phone device-alt">
+                    <div class="device-notch"></div>
+                    <div class="device-screen">
+                        <img src="{{ asset('assets/img/themes/javanese-purple.webp') }}" alt="Javanese Purple" class="device-img" />
+                    </div>
+                </div>
             </div>
             <div class="hero-cta reveal">
-                <a href="#pricing" class="btn-primary"><i class="fa-solid fa-tags icon-spacing"></i> Lihat Pricelist</a>
-                <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20VA%20Design!%20Saya%20mau%20order%20jasa%20desain%2Ftugas%20nih%20%F0%9F%99%8F"
+                <a href="#catalog" class="btn-primary btn-catalog"><i class="fa-solid fa-images icon-spacing"></i> Lihat Katalog Tema</a>
+                <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
                     target="_blank" class="btn-ghost"><i class="fa-solid fa-paper-plane icon-spacing"></i> Hubungi
                     Kami</a>
             </div>
@@ -168,24 +179,31 @@ Pembuatan Undangan Digital
     <section class="services" id="services">
         <div class="container">
             <div class="section-header reveal">
-                <span class="section-tag">— Layanan Kami</span>
                 <h2 class="section-title">
-                    Apa yang Bisa Kami <span class="accent-text">Bantu?</span>
+                    Fitur <span class="accent-text">ADD-On</span>
                 </h2>
+                <span class="section-tag">— Pilihan Fitur ADD-On Untuk Tampilan Yang Lebih Personal</span>
             </div>
             <div class="services-grid">
-                <div class="service-card reveal featured" data-delay="0">
-                    <div class="card-badge">Populer</div>
+                <div class="service-card reveal" data-delay="0">
                     <div class="card-icon-fa">
-                        <i class="fa-solid fa-envelope"></i>
+                        <i class="fa-solid fa-palette"></i>
                     </div>
-                    <h3>Lihat Katalog</h3>
+                    <h3>Ganti Tema</h3>
                     <p>
-                        Undangan pernikahan, akad, ulang tahun, & acara spesial lainnya —
-                        desain elegan, siap sebar.
+                        Ingin tema yang berbeda? Kamu bisa ganti tema undangan dengan biaya tambahan.
                     </p>
-                    <a href="#pricing" class="card-link">Lihat Harga
-                        <i class="fa-solid fa-arrow-right-long" style="margin-left: 4px"></i></a>
+                    <span class="addon-price">Rp30.000</span>
+                </div>
+                <div class="service-card reveal" data-delay="100">
+                    <div class="card-icon-fa">
+                        <i class="fa-solid fa-language"></i>
+                    </div>
+                    <h3>Ganti Bahasa</h3>
+                    <p>
+                        Butuh undangan dalam bahasa Inggris atau lainnya? Tersedia opsi ganti bahasa.
+                    </p>
+                    <span class="addon-price">Rp20.000</span>
                 </div>
             </div>
         </div>
@@ -210,344 +228,171 @@ Pembuatan Undangan Digital
                     </div>
                     <ul class="price-list">
                         <li>
-                            <span class="price-item">Tanpa Foto</span>
+                            <span class="price-item">
+                                <span class="price-item-name">Tanpa Foto</span>
+                                <span class="price-item-badge best">Hemat</span>
+                            </span>
                             <span class="price-val">
-                                <span class="price-old">Rp109.000</span>
                                 <span class="price-new">Rp79.000</span>
                             </span>
                         </li>
                         <li>
-                            <span class="price-item">Dengan Foto</span>
+                            <span class="price-item">
+                                <span class="price-item-name">Dengan Foto</span>
+                                <span class="price-item-badge best">Terlaris</span>
+                            </span>
                             <span class="price-val">
-                                <span class="price-old">Rp139.000</span>
                                 <span class="price-new">Rp109.000</span>
                             </span>
                         </li>
                     </ul>
-                    <p class="price-note"><i class="fa-solid fa-circle-exclamation"></i> Tema tidak dapat di-<em>mix</em> atau ganti warna</p>
-                    @php
-                        $themesJson = json_decode(file_get_contents(base_path('themes.json')), true);
-                        $birthdayThemes = json_decode(file_get_contents(base_path('birthday_themes.json')), true);
-                        $umumThemes = json_decode(file_get_contents(base_path('umum_seminar_themes.json')), true);
-                        $xmasRaw = json_decode(file_get_contents(base_path('christmas_new_year_themes.json')), true);
-                        $xmasThemes = $xmasRaw['themes'] ?? [];
-                        $aqiqahThemes = json_decode(file_get_contents(base_path('aqiqah_tasmiyah.json')), true);
-                        $syukuranThemes = json_decode(file_get_contents(base_path('tema_syukuran_islami.json')), true);
-                        $khitanThemes = json_decode(file_get_contents(base_path('tema-khitan.json')), true);
-                        $partyThemes = json_decode(file_get_contents(base_path('party-dinner.json')), true);
-                        $schoolThemes = json_decode(file_get_contents(base_path('tema_graduation_school.json')), true);
-                        $themeDir = public_path('assets/img/themes');
-                        $fileMap = [];
-                        foreach (scandir($themeDir) as $f) {
-                            if ($f === '.' || $f === '..') continue;
-                            $fileMap[pathinfo($f, PATHINFO_FILENAME)] = pathinfo($f, PATHINFO_EXTENSION);
-                        }
-                    @endphp
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="themeToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-heart icon-spacing"></i> Wedding
-                                <span class="toggle-badge">{{ count($themesJson) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="themeContent">
-                            <div class="theme-grid">
-                                @foreach($themesJson as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                            <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
-                                target="_blank" class="btn-theme">
-                                <i class="fa-solid fa-circle-dollar-to-slot icon-spacing"></i> Order via WhatsApp
-                            </a>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="birthdayToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-birthday-cake icon-spacing"></i> Birthday
-                                <span class="toggle-badge">{{ count($birthdayThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="birthdayContent">
-                            <div class="theme-grid">
-                                @foreach($birthdayThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="umumToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-calendar-days icon-spacing"></i> Umum / Seminar
-                                <span class="toggle-badge">{{ count($umumThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="umumContent">
-                            <div class="theme-grid">
-                                @foreach($umumThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="xmasToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-snowflake icon-spacing"></i> Christmas & New Year
-                                <span class="toggle-badge">{{ count($xmasThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="xmasContent">
-                            <div class="theme-grid">
-                                @foreach($xmasThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link'], '/'), strrpos(rtrim($tema['link'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="aqiqahToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-child icon-spacing"></i> Aqiqah & Tasmiyah
-                                <span class="toggle-badge">{{ count($aqiqahThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="aqiqahContent">
-                            <div class="theme-grid">
-                                @foreach($aqiqahThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="syukuranToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-moon icon-spacing"></i> Syukuran & Islami
-                                <span class="toggle-badge">{{ count($syukuranThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="syukuranContent">
-                            <div class="theme-grid">
-                                @foreach($syukuranThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="khitanToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-scissors icon-spacing"></i> Tasyakuran Khitan
-                                <span class="toggle-badge">{{ count($khitanThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="khitanContent">
-                            <div class="theme-grid">
-                                @foreach($khitanThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="partyToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-utensils icon-spacing"></i> Party & Dinner
-                                <span class="toggle-badge">{{ count($partyThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="partyContent">
-                            <div class="theme-grid">
-                                @foreach($partyThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="theme-section">
-                        <button type="button" class="btn-theme-toggle" id="schoolToggleBtn">
-                            <span class="btn-toggle-inner">
-                                <i class="fa-solid fa-graduation-cap icon-spacing"></i> School & Graduation
-                                <span class="toggle-badge">{{ count($schoolThemes) }} Tema</span>
-                            </span>
-                            <i class="fa-solid fa-chevron-down toggle-icon"></i>
-                        </button>
-                        <div class="theme-content" id="schoolContent">
-                            <div class="theme-grid">
-                                @foreach($schoolThemes as $tema)
-                                    @php
-                                        $slug = substr(rtrim($tema['link_preview'], '/'), strrpos(rtrim($tema['link_preview'], '/'), '/') + 1);
-                                        $hasImg = isset($fileMap[$slug]);
-                                        $color = '#' . substr(md5($slug), 0, 6);
-                                    @endphp
-                                    <a href="{{ $tema['link_preview'] }}" target="_blank" class="theme-item">
-                                        <div class="theme-img-wrap">
-                                            @if($hasImg)
-                                                <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $tema['nama_tema'] }}" class="theme-img" loading="lazy" />
-                                            @else
-                                                <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $tema['nama_tema'][0] }}</div>
-                                            @endif
-                                            <div class="theme-overlay">
-                                                <span class="theme-overlay-label">Lihat Tema</span>
-                                            </div>
-                                        </div>
-                                        <span class="theme-label">{{ $tema['nama_tema'] }}</span>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
+                    <div class="price-note-wrap"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Penting:</strong> Tema tidak dapat di-<em>mix</em> atau ganti warna</div>
                     <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
                         target="_blank" class="btn-card">
                         <i class="fa-solid fa-circle-dollar-to-slot icon-spacing"></i> Order Sekarang
                     </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="catalog" id="catalog">
+        <div class="container">
+            @php
+                $themeDir = public_path('assets/img/themes');
+                $fileMap = Cache::remember('theme_file_map', 3600, function () use ($themeDir) {
+                    $map = [];
+                    foreach (scandir($themeDir) as $f) {
+                        if ($f === '.' || $f === '..') continue;
+                        $map[pathinfo($f, PATHINFO_FILENAME)] = pathinfo($f, PATHINFO_EXTENSION);
+                    }
+                    return $map;
+                });
+                $cats = Cache::remember('theme_cats', 3600, function () {
+                    $result = [];
+                    $files = [
+                        ['file'=>'themes.json','id'=>'wedding','icon'=>'fa-heart','label'=>'Wedding','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                        ['file'=>'birthday_themes.json','id'=>'birthday','icon'=>'fa-birthday-cake','label'=>'Birthday','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                        ['file'=>'umum_seminar_themes.json','id'=>'umum','icon'=>'fa-calendar-days','label'=>'Umum / Seminar','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                        ['file'=>'christmas_new_year_themes.json','id'=>'xmas','icon'=>'fa-snowflake','label'=>'Christmas & NY','nameKey'=>'nama','linkKey'=>'link'],
+                        ['file'=>'aqiqah_tasmiyah.json','id'=>'aqiqah','icon'=>'fa-child','label'=>'Aqiqah & Tasmiyah','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                        ['file'=>'tema_syukuran_islami.json','id'=>'syukuran','icon'=>'fa-moon','label'=>'Syukuran & Islami','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                        ['file'=>'tema-khitan.json','id'=>'khitan','icon'=>'fa-scissors','label'=>'Tasyakuran Khitan','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                        ['file'=>'party-dinner.json','id'=>'party','icon'=>'fa-utensils','label'=>'Party & Dinner','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                        ['file'=>'tema_graduation_school.json','id'=>'school','icon'=>'fa-graduation-cap','label'=>'School & Graduation','nameKey'=>'nama_tema','linkKey'=>'link_preview'],
+                    ];
+                    foreach ($files as $f) {
+                        $raw = json_decode(file_get_contents(base_path($f['file'])), true);
+                        $themes = $raw['themes'] ?? $raw;
+                        $result[] = [
+                            'id'=>$f['id'],'icon'=>$f['icon'],'label'=>$f['label'],
+                            'count'=>count($themes),'themes'=>$themes,
+                            'nameKey'=>$f['nameKey'],'linkKey'=>$f['linkKey']
+                        ];
+                    }
+                    return $result;
+                });
+                $totalThemes = array_sum(array_column($cats, 'count'));
+            @endphp
+            <div class="catalog-head">
+                <h3 class="catalog-head-title">Pilih Tema <span class="accent-text">Sesuai Kebutuhanmu</span></h3>
+                <span class="catalog-head-count">{{ $totalThemes }} Tema</span>
+            </div>
+            <div class="catalog-search">
+                <i class="fa-solid fa-search"></i>
+                <input type="text" id="catalogSearch" placeholder="Cari tema undangan..." autocomplete="off" />
+            </div>
+            <div class="catalog-tabs" id="catalogTabs">
+                @foreach($cats as $i => $cat)
+                    <button type="button" class="catalog-tab" data-tab="{{ $cat['id'] }}">
+                        <i class="fa-solid {{ $cat['icon'] }}"></i>
+                        <span class="tab-label">{{ $cat['label'] }}</span>
+                        <span class="tab-count">{{ $cat['count'] }}</span>
+                    </button>
+                @endforeach
+            </div>
+            @foreach($cats as $i => $cat)
+                <div class="catalog-panel" id="panel-{{ $cat['id'] }}">
+                    <div class="theme-grid">
+                        @foreach($cat['themes'] as $tema)
+                            @php
+                                $slug = substr(rtrim($tema[$cat['linkKey']],'/'), strrpos(rtrim($tema[$cat['linkKey']],'/'),'/')+1);
+                                $hasImg = isset($fileMap[$slug]);
+                                $color = '#'.substr(md5($slug),0,6);
+                                $name = $tema[$cat['nameKey']]??'';
+                                $link = $tema[$cat['linkKey']]??'';
+                            @endphp
+                            <div class="theme-item">
+                                <div class="theme-img-wrap">
+                                    @if($hasImg)
+                                        <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $name }}" class="theme-img" loading="lazy" />
+                                    @else
+                                        <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $name[0]??'?' }}</div>
+                                    @endif
+                                    <div class="theme-overlay">
+                                        <a href="{{ $link }}" target="_blank" class="theme-overlay-btn">Lihat Contoh</a>
+                                        <a href="{{ route('public.order.form', ['slug' => $slug, 'category' => $cat['label'], 'name' => $name, 'link' => $link]) }}" class="theme-overlay-btn">
+                                            <i class="fa-solid fa-cart-shopping"></i> Pesan
+                                        </a>
+                                    </div>
+                                </div>
+                                <span class="theme-label">{{ $name }}</span>
+                                <a href="{{ $link }}" target="_blank" class="theme-label-link">Lihat Contoh <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                            </div>
+                        @endforeach
+                    </div>
+                    @php $firstTheme = $cat['themes'][0] ?? null; @endphp
+                    @php $firstSlug = $firstTheme ? substr(rtrim($firstTheme[$cat['linkKey']],'/'), strrpos(rtrim($firstTheme[$cat['linkKey']],'/'),'/')+1) : 'kategori-'.$cat['id']; @endphp
+                    @php $firstName = $firstTheme ? ($firstTheme[$cat['nameKey']] ?? $cat['label']) : $cat['label']; @endphp
+                    @php $firstLink = $firstTheme ? ($firstTheme[$cat['linkKey']] ?? '') : ''; @endphp
+                    <a href="{{ route('public.order.form', ['slug' => $firstSlug, 'category' => $cat['label'], 'name' => $firstName, 'link' => $firstLink]) }}" class="btn-theme">
+                        <i class="fa-solid fa-circle-dollar-to-slot icon-spacing"></i> Order via WhatsApp
+                    </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="steps" id="steps">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">— Cara Order</span>
+                <h2 class="section-title">
+                    Cara Order <span class="accent-text">Undangan Digital</span>
+                </h2>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card reveal" data-delay="0">
+                    <span class="step-num">1</span>
+                    <div class="step-icon-fa">
+                        <i class="fa-solid fa-images"></i>
+                    </div>
+                    <h3>Pilih Tema</h3>
+                    <p>Lihat katalog tema di atas, pilih tema undangan yang paling sesuai dengan acaramu.</p>
+                </div>
+                <div class="step-card reveal" data-delay="100">
+                    <span class="step-num">2</span>
+                    <div class="step-icon-fa">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <h3>Isi Data</h3>
+                    <p>Kirim data acara seperti nama mempelai, tanggal, lokasi, galeri foto, dan info lainnya.</p>
+                </div>
+                <div class="step-card reveal" data-delay="200">
+                    <span class="step-num">3</span>
+                    <div class="step-icon-fa">
+                        <i class="fa-solid fa-whatsapp"></i>
+                    </div>
+                    <h3>Hubungi Kami</h3>
+                    <p>Hubungi via WhatsApp untuk konsultasi, konfirmasi pesanan, dan proses pembayaran.</p>
+                </div>
+                <div class="step-card reveal" data-delay="300">
+                    <span class="step-num">4</span>
+                    <div class="step-icon-fa">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3>Undangan Siap</h3>
+                    <p>Undangan digitalmu akan selesai dalam 10&ndash;24 jam setelah data lengkap. Siap disebar!</p>
                 </div>
             </div>
         </div>
@@ -568,12 +413,33 @@ Pembuatan Undangan Digital
             <form id="publicOrderForm" action="{{ route('public.order.submit') }}" method="POST" target="_blank">
                 @csrf
                 <div class="public-modal-body">
-                    <input type="hidden" name="price_id" id="modalPriceId" value="" />
+                    <input type="hidden" name="theme_category" id="modalThemeCategory" value="" />
+                    <input type="hidden" name="theme_name" id="modalThemeName" value="" />
+                    <input type="hidden" name="theme_slug" id="modalThemeSlug" value="" />
+                    <input type="hidden" name="theme_link" id="modalThemeLink" value="" />
 
                     <div class="public-form-group">
-                        <label>Kategori yang Dipilih</label>
-                        <input type="text" id="modalServiceName" class="public-form-input disabled-look" readonly
-                            value="" />
+                        <label>Kategori Tema</label>
+                        <input type="text" id="modalCategoryDisplay" class="public-form-input disabled-look" readonly />
+                    </div>
+
+                    <div class="public-form-group">
+                        <label>Tema yang Dipilih</label>
+                        <input type="text" id="modalThemeDisplay" class="public-form-input disabled-look" readonly />
+                    </div>
+
+                    <div class="public-form-group">
+                        <label>Dengan Foto / Tanpa Foto *</label>
+                        <div style="display:flex;gap:12px;margin-top:4px;">
+                            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+                                <input type="radio" name="has_photo" value="1" checked />
+                                <span>Dengan Foto — Rp109.000</span>
+                            </label>
+                            <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
+                                <input type="radio" name="has_photo" value="0" />
+                                <span>Tanpa Foto — Rp79.000</span>
+                            </label>
+                        </div>
                     </div>
 
                     <div class="public-form-group">
@@ -659,6 +525,127 @@ Pembuatan Undangan Digital
         </div>
     </section>
 
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">— Testimoni</span>
+                <h2 class="section-title">
+                    Apa Kata <span class="accent-text">Mereka?</span>
+                </h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card reveal" data-delay="0">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"Pelayanan sangat cepat dan desainnya elegan banget! Revisinya juga cepet, cocok buat undangan pernikahan aku."</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">— Sarah</span>
+                        <span class="testimonial-role">Wedding</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" data-delay="100">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"Harga bersahabat, hasilnya mewah! Temen-temen pada bilang undangan ulang tahun anakku keren banget. Recommended!"</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">— Dewi</span>
+                        <span class="testimonial-role">Birthday</span>
+                    </div>
+                </div>
+                <div class="testimonial-card reveal" data-delay="200">
+                    <div class="testimonial-stars">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p>"Prosesnya cepet banget, kurang dari 24 jam udah jadi. Revisi sampe puas, makasih Va Invite!"</p>
+                    <div class="testimonial-author">
+                        <span class="testimonial-name">— Rina</span>
+                        <span class="testimonial-role">Aqiqah</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta-band">
+        <div class="container">
+            <div class="cta-band-inner reveal">
+                <h2>Siap Bikin Undangan Digital Impianmu?</h2>
+                <p>Hubungi kami sekarang dan dapatkan undangan digital elegan untuk acara spesialmu.</p>
+                <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F" target="_blank" class="btn-primary btn-catalog">
+                    <i class="fa-brands fa-whatsapp icon-spacing"></i> Order via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">— FAQ</span>
+                <h2 class="section-title">
+                    Pertanyaan <span class="accent-text">Umum</span>
+                </h2>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <button class="faq-question" type="button">
+                        <span>Apa itu undangan digital?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Undangan digital adalah undangan berbentuk website\/link yang bisa dikirim via WhatsApp, Instagram, atau media lainnya. Tamu cukup klik link untuk melihat info acara, galeri foto, lokasi, dan konfirmasi kehadiran secara online.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question" type="button">
+                        <span>Apakah bisa revisi? Berapa kali?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Tentu! Revisi bisa dilakukan tanpa batas sampai kamu benar-benar puas. Kami akan revisi sampai hari H acara kamu.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question" type="button">
+                        <span>Berapa lama proses pengerjaannya?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Proses pengerjaan kami sangat cepat, yakni antara 10 hingga 24 jam kerja setelah data lengkap kami terima.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question" type="button">
+                        <span>Berapa lama masa aktif undangannya?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Undangan digital aktif selama 1 tahun penuh sejak tanggal pembuatan. Tamu bisa akses kapan saja tanpa khawatir link mati.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question" type="button">
+                        <span>Bagaimana cara mengirimkan foto?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Setelah order, kamu bisa kirim foto via WhatsApp. Format bebas (JPEG, PNG), kami akan atur tata letaknya biar makin elegan.
+                    </div>
+                </div>
+                <div class="faq-item reveal">
+                    <button class="faq-question" type="button">
+                        <span>Apakah tema bisa di-mix atau ganti warna?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        Tema tidak bisa di-mix atau diganti warna. Setiap tema sudah dirancang secara khusus dengan konsep yang matang agar hasilnya tetap maksimal.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="ticker-wrap">
         <div class="ticker">
             <span>✦ Desain Elegan</span>
@@ -674,92 +661,47 @@ Pembuatan Undangan Digital
         </div>
     </div>
 
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">— Hubungi Kami</span>
-                <h2 class="section-title">
-                    Siap Order? <span class="accent-text">Yuk Mulai!</span>
-                </h2>
-                <p class="section-sub">
-                    Pilih cara yang paling mudah buatmu untuk langsung order sekarang.
-                </p>
-            </div>
-
-            <div class="contact-grid">
-                <div class="contact-card wa-card reveal" data-delay="0">
-                    <div class="contact-card-icon-fa" style="color: #25d366">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-card-body">
-                        <h3>WhatsApp Direct</h3>
-                        <p>
-                            Chat langsung dengan kami di WhatsApp. Respon cepat, ramah, dan
-                            siap bantu kebutuhan tugasmu!
-                        </p>
-                        <div class="contact-meta">
-                            <span><i class="fa-solid fa-comment-dots icon-spacing"></i>
-                                Biasanya balas dalam 1 jam</span>
-                        </div>
-                    </div>
-                    <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20VA%20Design!%20Saya%20mau%20order%20jasa%20desain%2Ftugas%20nih%20%F0%9F%99%8F"
-                        target="_blank" rel="noopener" class="btn-wa">
-                        <i class="fa-brands fa-whatsapp"></i> Chat via WhatsApp
-                    </a>
-                </div>
-
-                <div class="contact-card lt-card reveal" data-delay="120">
-                    <div class="contact-card-icon-fa" style="color: #39e09b">
-                        <i class="fa-solid fa-link"></i>
-                    </div>
-                    <div class="contact-card-body">
-                        <h3>Linktree Portofolio</h3>
-                        <p>
-                            Kunjungi Linktree kami untuk melihat seluruh kanal media sosial
-                            dan hasil pengerjaan portofolio lengkap.
-                        </p>
-                        <div class="contact-meta">
-                            <span><i class="fa-solid fa-globe icon-spacing"></i>
-                                linktr.ee/VaDesignn</span>
-                        </div>
-                    </div>
-                    <a href="{{ $linktree }}" target="_blank" rel="noopener" class="btn-lt">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka
-                        Linktree
-                    </a>
-                </div>
-            </div>
-
-            <p class="contact-note reveal">
-                ⚡ Setelah menghubungi kami, tim Va Invite akan segera membalas dan
-                memandu proses ordermu dari awal sampai selesai.
-            </p>
-        </div>
-    </section>
+    <div class="back-to-top" id="backToTop">
+        <a href="#hero" aria-label="Kembali ke atas">
+            <i class="fa-solid fa-chevron-up"></i>
+        </a>
+    </div>
 
     <footer class="footer">
         <div class="container">
             <div class="footer-inner">
                 <div class="footer-brand">
                     <img src="{{ asset('assets/img/logo.jpeg') }}" alt="Va Invite" class="footer-logo-img" />
-                    <p>Pembuatan Undangan Digital<br />Terpercaya & Terjangkau</p>
+                    <p>Undangan Digital<br />Terpercaya & Terjangkau</p>
                 </div>
                 <div class="footer-links">
-                    <h4>Layanan</h4>
+                    <h4>Media Sosial</h4>
                     <ul>
-                        <li><a href="#pricing">Pembuatan Undangan Digital</a></li>
+                        <li><a href="https://www.instagram.com/va.invite" target="_blank"><i class="fa-brands fa-instagram icon-spacing"></i> Instagram</a></li>
+                        <li><a href="https://www.tiktok.com/@va.invite" target="_blank"><i class="fa-brands fa-tiktok icon-spacing"></i> TikTok</a></li>
+                        <li><a href="https://wa.me/{{ $whatsapp_number }}" target="_blank"><i class="fa-brands fa-whatsapp icon-spacing"></i> WhatsApp</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
-                    <h4>Kontak</h4>
-                    <ul>
-                        <li>
-                            <a href="https://wa.me/{{ $whatsapp_number }}" target="_blank">WhatsApp</a>
-                        </li>
-                        <li>
-                            <a href="{{ $linktree }}" target="_blank">Linktree</a>
-                        </li>
-                        <li><a href="#why">Keunggulan</a></li>
+                    <h4>Jam Operasional</h4>
+                    <ul class="footer-hours">
+                        <li>Senin &mdash; Minggu</li>
+                        <li>07.00 &ndash; 23.00 WIB</li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Pembayaran</h4>
+                    <ul class="footer-payment">
+                        <li><i class="fa-solid fa-building-columns"></i> BCA — a.n. Va Invite</li>
+                        <li><i class="fa-solid fa-building-columns"></i> Mandiri — a.n. Va Invite</li>
+                        <li><i class="fa-solid fa-mobile-screen"></i> DANA / OVO / GoPay</li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <ul class="footer-address">
+                        <li><strong>Va Invite</strong></li>
+                        <li>Karang Taliwang, Gang Nusa Indah</li>
+                        <li>Mataram, Nusa Tenggara Barat</li>
                     </ul>
                 </div>
             </div>
@@ -770,7 +712,7 @@ Pembuatan Undangan Digital
         </div>
     </footer>
 
-    <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20VA%20Design!%20Saya%20mau%20order%20jasa%20desain%2Ftugas%20nih%20%F0%9F%99%8F"
+    <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
         target="_blank" rel="noopener" class="wa-float" aria-label="Chat WhatsApp">
         <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem"></i>
         <span class="wa-float-label">Order via WA</span>

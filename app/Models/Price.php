@@ -13,14 +13,4 @@ class Price extends Model
     {
         return $this->hasMany(Order::class);
     }
-
-    /**
-     * Scope query untuk menyaring pricelist berdasarkan kategori pilihan admin
-     */
-    public function scopeFilterByCategory($query, $categoryFilter)
-    {
-        return $query->when($categoryFilter && $categoryFilter !== 'all', function ($q) use ($categoryFilter) {
-            $q->where('category', $categoryFilter);
-        });
-    }
 }

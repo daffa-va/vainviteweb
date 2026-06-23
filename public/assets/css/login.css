@@ -130,7 +130,7 @@ body {
 
 .input-wrapper input:focus {
     outline: none;
-    border-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(245, 158, 11, 0.35);
     background: #0d0d0d;
 }
 
@@ -140,7 +140,7 @@ body {
     left: 50%;
     width: 0;
     height: 2px;
-    background: #ffffff;
+    background: #f59e0b;
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
@@ -270,10 +270,10 @@ body {
 .login-btn {
     width: 100%;
     padding: 16px;
-    background: #ffffff;
+    background: linear-gradient(135deg, #f59e0b, #d97706);
     border: none;
     border-radius: 10px;
-    color: #0c0c0c;
+    color: #fff;
     font-family: inherit;
     font-weight: 600;
     font-size: 1rem;
@@ -286,8 +286,8 @@ body {
 }
 
 .login-btn:hover {
-    background: #e5e5e5;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+    background: linear-gradient(135deg, #d97706, #b45309);
+    box-shadow: 0 0 24px rgba(245, 158, 11, 0.35);
 }
 
 .icon-spacing {

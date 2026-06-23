@@ -1,10 +1,10 @@
- <main class="page">
+ <main class="page" wire:poll.60s>
      <div class="page-header">
          <div>
              <h1 class="page-title">Ringkasan Sistem</h1>
-             <p class="page-subtitle">
-                 Statistik performa penjualan dan pengerjaan tugas saat ini.
-             </p>
+              <p class="page-subtitle">
+                  Statistik performa penjualan dan pengerjaan undangan digital saat ini.
+              </p>
          </div>
      </div>
 
@@ -35,7 +35,37 @@
          </div>
      </div>
 
-     <div class="card" style="margin-top: 24px">
+      <div class="card" style="margin-top: 24px">
+          <div class="card-header">
+              <h2 class="card-title">Tema Paling Diminati</h2>
+          </div>
+          <div class="table-wrapper">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th>Nama Tema</th>
+                          <th>Peminat</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      @forelse($popularThemes as $tema)
+                          <tr>
+                              <td><strong>{{ $tema->theme_name }}</strong></td>
+                              <td><span class="badge badge-progress">{{ $tema->total }} orang</span></td>
+                          </tr>
+                      @empty
+                          <tr>
+                              <td colspan="2" style="text-align: center; color: var(--muted); padding: 30px;">
+                                  Belum ada data minat tema.
+                              </td>
+                          </tr>
+                      @endforelse
+                  </tbody>
+              </table>
+          </div>
+      </div>
+
+      <div class="card" style="margin-top: 24px">
          <div class="card-header">
              <h2 class="card-title">Aktivitas Terakhir</h2>
          </div>
@@ -43,9 +73,9 @@
              <table class="table">
                  <thead>
                      <tr>
-                         <th>Pelanggan</th>
-                         <th>Layanan</th>
-                         <th>Harga</th>
+                          <th>Pelanggan</th>
+                          <th>Detail Tema</th>
+                          <th>Harga</th>
                          <th>Status</th>
                      </tr>
                  </thead>
@@ -90,14 +120,22 @@
                                  <strong>{{ $order->client_name }}</strong><br />
                                  <small style="color: var(--muted)">{{ $order->client_wa }}</small>
                              </td>
-                             <td>
-                                 @if ($order->price)
-                                     {{ $order->price->name }} <small
-                                         style="color: var(--blue)">({{ $order->price->category }})</small>
-                                 @else
-                                     <span style="color: var(--red)">Layanan Dihapus</span>
-                                 @endif
-                             </td>
+                              <td>
+                                  @if ($order->theme_category)
+                                      <strong>{{ $order->theme_category }}</strong>
+                                      @if ($order->theme_name)
+                                          <br /><small style="color: var(--muted)">Tema: {{ $order->theme_name }}</small>
+                                      @endif
+                                      @if ($order->has_photo !== null)
+                                          <br /><small style="color: var(--amber)">{{ $order->has_photo ? 'Dengan Foto' : 'Tanpa Foto' }}</small>
+                                      @endif
+                                  @elseif ($order->price)
+                                      {{ $order->price->name }} <small
+                                          style="color: var(--amber)">({{ $order->price->category }})</small>
+                                  @else
+                                      <span style="color: var(--red)">Layanan Dihapus</span>
+                                  @endif
+                              </td>
                              <td style="font-weight: 600;">Rp {{ number_format($order->total_price, 0, ',', '.') }}</td>
                              <td>
                                  @if ($order->status === 'pending')

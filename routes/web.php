@@ -8,6 +8,12 @@ Route::get('/', [PublicController::class, 'index'])->name('home');
 
 Route::post('/submit-order', [PublicController::class, 'storeOrder'])->name('public.order.submit');
 
+Route::get('/order/form/{slug}', [PublicController::class, 'orderForm'])->name('public.order.form');
+
+Route::get('/order/theme/{slug}', [PublicController::class, 'orderTheme'])->name('public.order.theme');
+
+Route::get('/order-confirmation', [PublicController::class, 'confirmation'])->name('public.order.confirmation');
+
 Route::prefix('authentication')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
     Route::post('login', [AuthController::class, 'progressLogin'])->name('login.post');
@@ -21,9 +27,14 @@ Route::middleware('auth')->prefix('administrator')->name('admin.')->group(functi
 
     Route::get('kelola-order', App\Livewire\Admin\KelolaOrder::class)->name('kelola-order');
 
-    Route::get('edit-pricelist', App\Livewire\Admin\EditPricelist::class)->name('edit-pricelist');
+    Route::get('edit-pricelist', App\Livewire\Admin\EditPricelist::class)->name('edit-pricelist')
+        ->middleware('role:admin');
 
-    Route::get('settings', App\Livewire\Admin\Setting::class)->name('setting');
+    Route::get('settings', App\Livewire\Admin\Setting::class)->name('setting')
+        ->middleware('role:admin');
+
+    Route::get('activity-logs', App\Livewire\Admin\ActivityLogs::class)->name('activity-logs')
+        ->middleware('role:admin');
 
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 });

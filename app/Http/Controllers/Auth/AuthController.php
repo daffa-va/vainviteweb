@@ -98,6 +98,7 @@ class AuthController extends Controller
             'password'         => Hash::make('passwordadmin123'),
             'whatsapp_number'  => '087760058673',
             'linktree_url'     => 'https://linktr.ee/VaDesignn',
+            'role'             => 'admin',
         ]);
 
         return response('<div style="font-family: sans-serif; text-align: center; margin-top: 100px;">

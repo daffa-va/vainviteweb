@@ -22,7 +22,8 @@ class Order extends Model
         return $query->when($searchTerm, function ($q) use ($searchTerm) {
             $q->where(function ($sub) use ($searchTerm) {
                 $sub->where('client_name', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('client_wa', 'like', '%' . $searchTerm . '%');
+                    ->orWhere('client_wa', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('theme_category', 'like', '%' . $searchTerm . '%');
             });
         })->when($statusFilter && $statusFilter !== 'all', function ($q) use ($statusFilter) {
             $q->where('status', $statusFilter);

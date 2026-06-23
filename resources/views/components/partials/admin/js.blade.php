@@ -10,6 +10,12 @@
             }, 2800);
         }
     });
+
+    window.addEventListener('openWa', event => {
+        if (event.detail.url) {
+            window.open(event.detail.url, '_blank');
+        }
+    });
 </script>
 <div x-data="{
     show: false,

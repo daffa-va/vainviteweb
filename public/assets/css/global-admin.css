@@ -17,7 +17,8 @@
   --border: rgba(255, 255, 255, 0.07);
   --white: #f0f0f0;
   --muted: #777;
-  --blue: #3b82f6;
+  --amber: #f59e0b;
+  --amber-dim: rgba(245, 158, 11, 0.12);
   --green: #22c55e;
   --yellow: #eab308;
   --red: #ef4444;
@@ -75,8 +76,8 @@ body {
 
 .menu-item:hover,
 .menu-item.active {
-  color: var(--white);
-  background: var(--bg-raised);
+  color: var(--amber);
+  background: var(--amber-dim);
 }
 
 .sidebar-footer {
@@ -243,8 +244,8 @@ body {
   gap: 6px;
 }
 .badge-progress {
-  background: rgba(59, 130, 246, 0.1);
-  color: #60a5fa;
+  background: var(--amber-dim);
+  color: var(--amber);
 }
 .badge-pending {
   background: rgba(234, 179, 8, 0.1);
@@ -268,7 +269,8 @@ body {
   align-items: center;
 }
 .btn-primary:hover {
-  background: #e0e0e0;
+  background: #d97706;
+  color: #fff;
 }
 .btn-sm {
   padding: 6px 10px;
@@ -321,7 +323,7 @@ body {
 }
 .form-input:focus {
   outline: none;
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(245, 158, 11, 0.4);
 }
 .filter-bar {
   display: flex;

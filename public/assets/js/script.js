@@ -232,24 +232,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
     stats.forEach((s) => counterObserver.observe(s));
 
-    // ── 12. PUBLIC INITIALIZATION MODAL ORDER (Laravel Sync) ──────────
+    // ── 12. PUBLIC MODAL ORDER ────────────────────────────────────────
     const publicOrderModal = document.getElementById("publicOrderModal");
     const closePublicModal = document.getElementById("closePublicModal");
-    const btnCancelPublicModal = document.getElementById(
-        "btnCancelPublicModal",
-    );
+    const btnCancelPublicModal = document.getElementById("btnCancelPublicModal");
     const publicOrderForm = document.getElementById("publicOrderForm");
 
-    const modalPriceId = document.getElementById("modalPriceId");
-    const modalServiceName = document.getElementById("modalServiceName");
+    const modalThemeCategory = document.getElementById("modalThemeCategory");
+    const modalThemeName = document.getElementById("modalThemeName");
+    const modalThemeSlug = document.getElementById("modalThemeSlug");
+    const modalThemeLink = document.getElementById("modalThemeLink");
+    const modalCategoryDisplay = document.getElementById("modalCategoryDisplay");
+    const modalThemeDisplay = document.getElementById("modalThemeDisplay");
 
     document.querySelectorAll(".order-trigger").forEach((button) => {
         button.addEventListener("click", () => {
-            const priceId = button.dataset.priceId;
-            const serviceName = button.dataset.serviceName;
+            const category = button.dataset.category;
+            const themeName = button.dataset.themeName;
+            const themeSlug = button.dataset.themeSlug;
+            const themeLink = button.dataset.themeLink;
 
-            modalPriceId.value = priceId;
-            modalServiceName.value = serviceName;
+            modalThemeCategory.value = category;
+            modalThemeName.value = themeName;
+            modalThemeSlug.value = themeSlug;
+            modalThemeLink.value = themeLink;
+            modalCategoryDisplay.value = category;
+            modalThemeDisplay.value = themeName;
 
             publicOrderModal.classList.add("show");
             document.body.style.overflow = "hidden";
@@ -273,115 +281,94 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // PERBAIKAN FATAL: Mengizinkan form melakukan POST asli ke tab baru Laravel,
-    // lalu langsung menutup modal secara otomatis di tab utama website.
     if (publicOrderForm) {
         publicOrderForm.addEventListener("submit", () => {
-            // Menunda penutupan modal selama 300ms agar data form sempat terkirim penuh ke server
             setTimeout(() => {
                 hidePublicModal();
             }, 300);
         });
     }
 
-    // ── 13. THEME TOGGLE (Wedding) ──────────────────────────────────────
-    const themeBtn = document.getElementById("themeToggleBtn");
-    const themeBox = document.getElementById("themeContent");
+    // ── 13. CATALOG TABS + SEARCH ────────────────────────────────────
+    var tabs = document.querySelectorAll(".catalog-tab");
+    var panels = document.querySelectorAll(".catalog-panel");
+    var searchInput = document.getElementById("catalogSearch");
 
-    if (themeBtn && themeBox) {
-        themeBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            themeBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
+    tabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+            var isActive = this.classList.contains("active");
+            tabs.forEach(function(t) { t.classList.remove("active"); });
+            panels.forEach(function(p) { p.classList.remove("active"); });
+            if (!isActive) {
+                this.classList.add("active");
+                var target = document.getElementById("panel-" + this.getAttribute("data-tab"));
+                if (target) {
+                    target.classList.add("active");
+                    if (searchInput && searchInput.value.trim() !== "") {
+                        filterThemes(searchInput.value.trim());
+                    }
+                }
+            }
+        });
+    });
+
+    function filterThemes(q) {
+        var allPanels = document.querySelectorAll(".catalog-panel");
+        allPanels.forEach(function(panel) {
+            var items = panel.querySelectorAll(".theme-item");
+            var hasVisible = false;
+            items.forEach(function(item) {
+                var label = item.querySelector(".theme-label");
+                var name = label ? label.textContent.toLowerCase() : "";
+                var match = name.indexOf(q.toLowerCase()) !== -1;
+                item.style.display = match ? "block" : "none";
+                if (match) hasVisible = true;
+            });
+            // only show panels with visible items (or if no search)
+            if (q !== "") {
+                if (!panel.classList.contains("active")) return;
+                var grid = panel.querySelector(".theme-grid");
+                if (grid) {
+                    grid.style.display = hasVisible ? "grid" : "none";
+                }
+                var msg = panel.querySelector(".search-empty");
+                if (hasVisible) {
+                    if (msg) msg.remove();
+                } else {
+                    if (!msg) {
+                        msg = document.createElement("p");
+                        msg.className = "search-empty";
+                        msg.textContent = "Tidak ada tema yang cocok";
+                        panel.appendChild(msg);
+                    }
+                }
+            } else {
+                items.forEach(function(item) { item.style.display = "block"; });
+                var grid = panel.querySelector(".theme-grid");
+                if (grid) grid.style.display = "grid";
+                var msg = panel.querySelector(".search-empty");
+                if (msg) msg.remove();
+            }
         });
     }
 
-    const birthdayBtn = document.getElementById("birthdayToggleBtn");
-    const birthdayBox = document.getElementById("birthdayContent");
-    if (birthdayBtn && birthdayBox) {
-        birthdayBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            birthdayBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
+    if (searchInput) {
+        searchInput.addEventListener("input", function() {
+            filterThemes(this.value.trim());
         });
     }
 
-    const umumBtn = document.getElementById("umumToggleBtn");
-    const umumBox = document.getElementById("umumContent");
-    if (umumBtn && umumBox) {
-        umumBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            umumBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
+    // ── 14. FAQ ACCORDION ──────────────────────────────────────────────
+    document.querySelectorAll(".faq-question").forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            var item = this.closest(".faq-item");
+            var isOpen = item.classList.contains("open");
+            document.querySelectorAll(".faq-item.open").forEach(function(i) {
+                i.classList.remove("open");
+            });
+            if (!isOpen) {
+                item.classList.add("open");
+            }
         });
-    }
-
-    const xmasBtn = document.getElementById("xmasToggleBtn");
-    const xmasBox = document.getElementById("xmasContent");
-    if (xmasBtn && xmasBox) {
-        xmasBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            xmasBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
-        });
-    }
-
-    const aqiqahBtn = document.getElementById("aqiqahToggleBtn");
-    const aqiqahBox = document.getElementById("aqiqahContent");
-    if (aqiqahBtn && aqiqahBox) {
-        aqiqahBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            aqiqahBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
-        });
-    }
-
-    const syukuranBtn = document.getElementById("syukuranToggleBtn");
-    const syukuranBox = document.getElementById("syukuranContent");
-    if (syukuranBtn && syukuranBox) {
-        syukuranBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            syukuranBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
-        });
-    }
-
-    const khitanBtn = document.getElementById("khitanToggleBtn");
-    const khitanBox = document.getElementById("khitanContent");
-    if (khitanBtn && khitanBox) {
-        khitanBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            khitanBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
-        });
-    }
-
-    const partyBtn = document.getElementById("partyToggleBtn");
-    const partyBox = document.getElementById("partyContent");
-    if (partyBtn && partyBox) {
-        partyBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            partyBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
-        });
-    }
-
-    const schoolBtn = document.getElementById("schoolToggleBtn");
-    const schoolBox = document.getElementById("schoolContent");
-    if (schoolBtn && schoolBox) {
-        schoolBtn.addEventListener("click", function (e) {
-            e.stopPropagation();
-            schoolBox.classList.toggle("open");
-            const icon = this.querySelector(".toggle-icon");
-            if (icon) icon.classList.toggle("open");
-        });
-    }
+    });
 });

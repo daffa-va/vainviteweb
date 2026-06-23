@@ -2,95 +2,71 @@
 
 namespace App\Livewire\Admin;
 
-use App\Livewire\Forms\OrderVerificationForm;
 use App\Models\Order;
-use App\Models\Price;
+use App\Helpers\LogHelper;
 use Livewire\Attributes\Title;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class OrderMasuk extends Component
 {
+    use WithPagination;
+
     #[Title('Order Masuk')]
 
-    // Instansiasi Form Object pembantu
-    public OrderVerificationForm $form;
-
-    // Properti Biner Kontrol Munculnya Jendela Modal
-    public $isOpenAccept = false;
     public $isOpenCancel = false;
+    public $isOpenDetail = false;
 
-    // Properti penampung teks untuk konfirmasi pembatalan
+    public $detailOrder = null;
+
     public $cancelTargetName = '';
     public $cancelTargetId;
 
-    // Properti penampung kumpulan data paket layanan se-kategori
-    public $availableServices = [];
+    public $search = '';
 
-    // Memicu Modal Verifikasi (Accept) & Mengisi Dropdown Se-Kategori otomatis
-    public function openAcceptModal($id)
+    public function updatedSearch()
     {
-        $this->form->resetAll();
-        $order = Order::with('price')->findOrFail($id);
-        $this->form->setForm($order);
-
-        // Ambil semua paket layanan di database yang memiliki kategori yang sama dengan orderan terpilih
-        if ($order->price) {
-            $this->availableServices = Price::where('category', $order->price->category)->get();
-        } else {
-            $this->availableServices = Price::all();
-        }
-
-        $this->isOpenAccept = true;
+        $this->resetPage();
     }
 
-    // Memicu Modal Peringatan Pembatalan (Cancel)
+    public function openAcceptModal($id)
+    {
+        $order = Order::findOrFail($id);
+        $oldData = $order->toArray();
+        $order->update(['status' => 'progress']);
+        $logName = $order->client_name ?? $order->theme_name ?? 'Pengunjung';
+        LogHelper::log('accept_order', "Menerima order {$logName} ke progress", 'Order', $order->id, $oldData, $order->toArray());
+        $this->dispatch('toast', message: '🚀 Orderan berhasil diverifikasi & dipindahkan ke list kerja!');
+    }
+
     public function openCancelModal($id)
     {
         $order = Order::findOrFail($id);
         $this->cancelTargetId   = $order->id;
-        $this->cancelTargetName = $order->client_name;
+        $this->cancelTargetName = $order->client_name ?? $order->theme_name ?? 'Pengunjung';
 
         $this->isOpenCancel = true;
     }
 
-    // Menutup Seluruh Jendela Modal Overlay
     public function closeModal()
     {
-        $this->isOpenAccept = false;
         $this->isOpenCancel = false;
+        $this->isOpenDetail = false;
+        $this->detailOrder = null;
     }
 
-    // Eksekusi Pemindahan Status Orderan Dari Pending Menjadi Progress Kerja aktif
-    public function moveToProgress()
+    public function openDetail($id)
     {
-        $this->form->validate();
-
-        $order = Order::findOrFail($this->form->orderId);
-
-        $finalPrice = $this->form->totalPrice;
-
-        if (blank($finalPrice)) {
-            // Cari data paket yang sedang terpilih di dropdown
-            $chosenService = Price::find($this->form->priceId);
-            // Jika paketnya ketemu, pakai harganya. Jika tidak, set ke 0
-            $finalPrice = $chosenService ? $chosenService->price : 0;
-        }
-
-        $order->update([
-            'price_id'    => $this->form->priceId,
-            'total_price' => $finalPrice,
-            'custom_note' => $this->form->customNote,
-            'status'      => 'progress'
-        ]);
-
-        $this->dispatch('toast', message: '🚀 Orderan berhasil diverifikasi & dipindahkan ke list kerja!');
-        $this->closeModal();
+        $this->detailOrder = Order::with('price')->findOrFail($id);
+        $this->isOpenDetail = true;
     }
 
-    // Eksekusi Penghapusan Antrean Orderan (Tolak / Cancel)
     public function confirmCancel()
     {
         $order = Order::findOrFail($this->cancelTargetId);
+        $oldData = $order->toArray();
+        $logName = $order->client_name ?? $order->theme_name ?? 'Pengunjung';
+        LogHelper::log('cancel_order', "Membatalkan order {$logName}", 'Order', $order->id, $oldData);
         $order->delete();
 
         $this->dispatch('toast', message: '🗑️ Antrean pesanan berhasil dibatalkan.');
@@ -100,8 +76,18 @@ class OrderMasuk extends Component
     public function render()
     {
         return view('livewire.admin.order-masuk', [
-            // Murni hanya menampilkan pesanan masuk dari landing page yang berstatus 'pending'
-            'orders' => Order::with('price')->where('status', 'pending')->latest()->get()
+            'orders' => Order::with('price')
+                ->where('status', 'pending')
+                ->when($this->search, function ($q) {
+                    $q->where(function ($sub) {
+                        $sub->where('client_name', 'like', '%' . $this->search . '%')
+                            ->orWhere('client_wa', 'like', '%' . $this->search . '%')
+                            ->orWhere('theme_name', 'like', '%' . $this->search . '%')
+                            ->orWhere('theme_category', 'like', '%' . $this->search . '%');
+                    });
+                })
+                ->latest()
+                ->paginate(20)
         ])->layout('components.layouts.admin');
     }
 }

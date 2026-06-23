@@ -20,11 +20,11 @@
         <div class="login-box">
             <div class="login-header">
                 <div class="brand-logo">
-                    <i class="fa-solid fa-bezier-curve login-fa-icon"></i>
+                    <i class="fa-solid fa-crown login-fa-icon"></i>
                 </div>
-                <h1 class="brand-title">VA DESIGN</h1>
+                <h1 class="brand-title">Va Invite</h1>
                 <p class="brand-tagline">
-                    Masukkan email dan password otoritas admin untuk mengelola pesanan & sistem layanan
+                    Masuk untuk mengelola pesanan undangan digital & sistem layanan
                 </p>
             </div>
 

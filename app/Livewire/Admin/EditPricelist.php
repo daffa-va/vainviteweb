@@ -2,99 +2,72 @@
 
 namespace App\Livewire\Admin;
 
-use App\Livewire\Forms\PriceForm;
 use App\Models\Price;
 use Livewire\Attributes\Title;
-use Livewire\Attributes\Url;
 use Livewire\Component;
 
 class EditPricelist extends Component
 {
     #[Title('Edit Pricelist')]
 
-    public PriceForm $form;
+    public $editingId = null;
+    public $editPrice = '';
 
-    public $isOpen = false;
-    public $isEdit = false;
-
-    #[Url(history: true)]
-    public $filterCategory = 'all';
+    public $categoryList = [
+        'Wedding', 'Birthday', 'Umum / Seminar', 'Christmas & NY',
+        'Aqiqah & Tasmiyah', 'Syukuran & Islami', 'Tasyakuran Khitan',
+        'Party & Dinner', 'School & Graduation'
+    ];
 
     public function getIconByCategory($categoryName)
     {
         return match ($categoryName) {
-            'Tugas Sekolah / Kuliah' => 'fa-book',
-            'Spanduk & Banner'        => 'fa-image',
-            'Desain Media Sosial'     => 'fa-hashtag',
-            default                   => 'fa-tags',
+            'Wedding'              => 'fa-heart',
+            'Birthday'             => 'fa-birthday-cake',
+            'Umum / Seminar'       => 'fa-calendar-days',
+            'Christmas & NY'       => 'fa-snowflake',
+            'Aqiqah & Tasmiyah'    => 'fa-child',
+            'Syukuran & Islami'    => 'fa-moon',
+            'Tasyakuran Khitan'    => 'fa-scissors',
+            'Party & Dinner'       => 'fa-utensils',
+            'School & Graduation'  => 'fa-graduation-cap',
+            default                => 'fa-tags',
         };
     }
 
-    public function openAddModal()
-    {
-        $this->form->resetAll();
-        $this->isEdit = false; // Set judul modal ke "Tambah Layanan Baru"
-        $this->isOpen = true;  // Memicu class .show pada overlay modal
-    }
-
-    public function openEditModal($id)
+    public function startEdit($id)
     {
         $item = Price::findOrFail($id);
-        $this->form->setForm($item);
-
-        $this->isEdit = true;  // Set judul modal ke "Edit Detail Layanan"
-        $this->isOpen = true;  // Munculkan jendela modal
+        $this->editingId = $id;
+        $this->editPrice = $item->price;
     }
 
-    public function closeModal()
+    public function cancelEdit()
     {
-        $this->isOpen = false;
+        $this->editingId = null;
+        $this->editPrice = '';
     }
 
-    public function save()
+    public function savePrice($id)
     {
-        // Jalankan validasi yang ada di dalam Form Object (PriceForm)
-        $this->form->validate();
+        $this->validate(['editPrice' => 'required|numeric|min:0']);
 
-        // Cari tahu ikon otomatisnya berdasarkan pilihan kategori di form
-        $iconClass = $this->getIconByCategory($this->form->category);
+        $item = Price::findOrFail($id);
+        $item->update(['price' => $this->editPrice]);
 
-        if ($this->isEdit) {
-            // Update Data
-            $record = Price::findOrFail($this->form->priceId);
-            $record->update([
-                'category' => $this->form->category,
-                'name'     => $this->form->name,
-                'price'    => $this->form->price,
-                'icon'     => $iconClass,
-            ]);
-            $this->dispatch('toast', message: '✅ Detail paket berhasil diperbarui!');
-        } else {
-            // Create Data Baru
-            Price::create([
-                'category' => $this->form->category,
-                'name'     => $this->form->name,
-                'price'    => $this->form->price,
-                'icon'     => $iconClass,
-            ]);
-            $this->dispatch('toast', message: '🎉 Paket layanan baru berhasil ditambahkan!');
-        }
+        $this->editingId = null;
+        $this->editPrice = '';
 
-        $this->closeModal();
-    }
-
-    public function delete($id)
-    {
-        Price::findOrFail($id)->delete();
-        $this->dispatch('toast', message: '🗑️ Paket layanan berhasil dihapus!');
+        $this->dispatch('toast', message: '✅ Harga berhasil diperbarui!');
     }
 
     public function render()
     {
+        $pricelist = Price::orderBy('category')->orderBy('name')->get()->groupBy('category');
+
         return view('livewire.admin.edit-pricelist', [
-            'pricelist' => Price::filterByCategory($this->filterCategory)
-                ->latest()
-                ->get()
+            'pricelist' => $pricelist,
+            'categories' => $this->categoryList,
         ])->layout('components.layouts.admin');
     }
 }
