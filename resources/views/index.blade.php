@@ -95,6 +95,7 @@
                 <li><a href="#steps">Cara Order</a></li>
                 <li><a href="#pricing">Harga</a></li>
                 <li><a href="#why">Keunggulan</a></li>
+                <li><a href="{{ route('public.order.track') }}"><i class="fa-solid fa-search"></i> Lacak</a></li>
                 <li>
                     <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
                         target="_blank" class="btn-nav"><i class="fa-solid fa-cart-shopping icon-spacing"></i> Order
@@ -293,10 +294,23 @@ Undangan Digital
                     return $result;
                 });
                 $totalThemes = array_sum(array_column($cats, 'count'));
+                $catPrices = Cache::remember('cat_prices', 3600, function () use ($cats) {
+                    $result = [];
+                    foreach ($cats as $c) {
+                        $dengan = \App\Models\Price::where('category', $c['label'])->where('name', 'Dengan Foto')->value('price');
+                        $tanpa = \App\Models\Price::where('category', $c['label'])->where('name', 'Tanpa Foto')->value('price');
+                        $result[$c['id']] = ['with' => $dengan ?: 109000, 'without' => $tanpa ?: 79000];
+                    }
+                    return $result;
+                });
+                $globalMin = min(array_column($catPrices, 'without'));
             @endphp
             <div class="catalog-head">
                 <h3 class="catalog-head-title">Pilih Tema <span class="accent-text">Sesuai Kebutuhanmu</span></h3>
-                <span class="catalog-head-count">{{ $totalThemes }} Tema</span>
+                <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+                    <span class="catalog-head-count">{{ $totalThemes }} Tema</span>
+                    <span style="color:#94a3b8;font-size:0.82rem;background:rgba(255,255,255,0.05);padding:4px 12px;border-radius:20px;">Mulai Rp{{ number_format($globalMin, 0, ',', '.') }}</span>
+                </div>
             </div>
             <div class="catalog-search">
                 <i class="fa-solid fa-search"></i>
@@ -329,6 +343,7 @@ Undangan Digital
                                     @else
                                         <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $name[0]??'?' }}</div>
                                     @endif
+                                    <span style="position:absolute;bottom:8px;left:8px;background:rgba(0,0,0,0.75);color:#f59e0b;font-size:0.7rem;font-weight:600;padding:2px 8px;border-radius:4px;">Rp{{ number_format(($catPrices[$cat['id']]['without'] ?? 79000), 0, ',', '.') }}</span>
                                     <div class="theme-overlay">
                                         <a href="{{ $link }}" target="_blank" class="theme-overlay-btn">Lihat Contoh</a>
                                         <a href="{{ route('public.order.form', ['slug' => $slug, 'category' => $cat['label'], 'name' => $name, 'link' => $link]) }}" class="theme-overlay-btn">
@@ -677,6 +692,7 @@ Undangan Digital
                 <div class="footer-links">
                     <h4>Media Sosial</h4>
                     <ul>
+                        <li><a href="{{ route('public.order.track') }}"><i class="fa-solid fa-search icon-spacing"></i> Lacak Pesanan</a></li>
                         <li><a href="https://www.instagram.com/va.invite" target="_blank"><i class="fa-brands fa-instagram icon-spacing"></i> Instagram</a></li>
                         <li><a href="https://www.tiktok.com/@va.invite" target="_blank"><i class="fa-brands fa-tiktok icon-spacing"></i> TikTok</a></li>
                         <li><a href="https://wa.me/{{ $whatsapp_number }}" target="_blank"><i class="fa-brands fa-whatsapp icon-spacing"></i> WhatsApp</a></li>

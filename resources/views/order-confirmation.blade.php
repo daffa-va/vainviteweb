@@ -59,6 +59,10 @@
 
         <div class="summary">
             <div class="summary-row">
+                <span class="summary-label">Order ID</span>
+                <span class="summary-value">#{{ $order_id }} <button type="button" onclick="navigator.clipboard.writeText('{{ $order_id }}').then(()=>{var t=this;t.textContent='Tersalin!';setTimeout(()=>t.textContent='Salin',2000)}).catch(()=>{})" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#f59e0b;border-radius:6px;padding:1px 8px;font-size:0.72rem;cursor:pointer;margin-left:6px;vertical-align:middle;">Salin</button></span>
+            </div>
+            <div class="summary-row">
                 <span class="summary-label">Nama</span>
                 <span class="summary-value">{{ $nama }}</span>
             </div>
@@ -84,6 +88,20 @@
                 <span class="summary-label">Harga</span>
                 <span class="summary-value">Rp {{ $harga }}</span>
             </div>
+        </div>
+
+        <div style="background:#1a1a1a;border-radius:10px;padding:14px 16px;margin-bottom:18px;text-align:left;font-size:0.82rem;">
+            <div style="color:#94a3b8;margin-bottom:4px;"><i class="fa-regular fa-clock"></i> Estimasi pengerjaan: <strong style="color:#f1f5f9;">10–24 jam</strong></div>
+            <div style="color:#94a3b8;"><i class="fa-regular fa-note-sticky"></i> Simpan Order ID <strong style="color:#f59e0b;">#{{ $order_id }}</strong> untuk lacak pesanan</div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;justify-content:center;">
+            <a href="{{ route('public.order.track') }}" style="display:inline-flex;align-items:center;gap:6px;color:#f59e0b;text-decoration:none;font-size:0.82rem;border:1px solid rgba(245,158,11,0.3);padding:8px 16px;border-radius:8px;">
+                <i class="fa-solid fa-search"></i> Lacak Pesanan
+            </a>
+            <a href="https://wa.me/{{ $wa_phone }}" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:#94a3b8;text-decoration:none;font-size:0.82rem;border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:8px;">
+                <i class="fa-regular fa-message"></i> Request Revisi
+            </a>
         </div>
 
         <a href="{{ $wa_url }}" target="_blank" class="btn" id="waBtn">

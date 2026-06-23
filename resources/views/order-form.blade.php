@@ -516,7 +516,7 @@
             <div class="card-title"><i class="fa-solid fa-gift"></i> Kado Digital / Amplop Online</div>
 
             @for ($ri = 1; $ri <= 3; $ri++)
-            <div class="rekening-block" id="rekening-{{ $ri }}" style="{{ $ri > 1 ? 'display:none;' : '' }}background:#111;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;margin-bottom:14px;">
+            <div class="rekening-block" id="rekening-{{ $ri }}" style="{{ $ri > 1 ? 'display:none;' : 'display:block;' }}background:#111;border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:18px;margin-bottom:14px;">
                 <h4 style="font-size:0.9rem;font-weight:600;margin-bottom:12px;color:#f59e0b;">
                     Rekening {{ $ri }}
                     @if ($ri > 1)
@@ -608,6 +608,10 @@
         {{-- OPSI & HARGA --}}
         <div class="card">
             <div class="card-title"><i class="fa-solid fa-tag"></i> Opsi & Harga</div>
+            <div class="form-group">
+                <label class="form-label">Catatan Khusus (opsional)</label>
+                <textarea name="custom_note" class="form-input form-textarea" placeholder="Cth: Tema warna favorit, instruksi desain, permintaan khusus..."></textarea>
+            </div>
             <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label">Opsi Undangan <span class="required">*</span></label>
                 <div class="radio-group">
@@ -636,6 +640,7 @@
         {{-- UPLOAD FOTO --}}
         <div class="card" id="uploadFotoSection" style="display:none;">
             <div class="card-title"><i class="fa-solid fa-images"></i> Upload Foto</div>
+            <div style="font-size:0.82rem;color:#666;margin-bottom:10px;">Upload foto pasangan (max 1MB per file)</div>
             <div class="form-group" style="margin-bottom:0;">
                 <label class="form-label">Pilih Foto (max 1MB per file)</label>
                 <input type="file" name="fotos[]" multiple accept="image/*" id="fotoInput" class="form-input" style="padding:10px;font-size:0.82rem;" />
@@ -660,8 +665,12 @@ var acaraTerlihat = {2: false, 3: false};
 var loveTerlihat = {1: false, 2: false, 3: false, 4: false};
 var rekeningTerlihat = {1: true, 2: false, 3: false};
 
-// Double-submit prevention
-document.querySelector('form').addEventListener('submit', function() {
+// Konfirmasi sebelum submit
+document.querySelector('form').addEventListener('submit', function(e) {
+    if (!confirm('Yakin ingin mengirim pesanan? Pastikan semua data sudah benar.')) {
+        e.preventDefault();
+        return;
+    }
     var btn = document.getElementById('submitBtn');
     btn.disabled = true;
     btn.style.opacity = '0.6';

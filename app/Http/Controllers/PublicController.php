@@ -89,15 +89,15 @@ class PublicController extends Controller
             'theme_link'              => 'nullable|string',
             'has_photo'               => 'required|in:0,1',
             'client_name'             => 'required|string|max:255',
-            'client_wa'               => 'required|string|max:20|regex:/^[0-9]+$/',
+            'client_wa'               => 'required|string|min:10|max:15|regex:/^[0-9]+$/',
             'data_mempelai_pria_panggilan'   => 'nullable|string|max:255',
             'data_mempelai_wanita_panggilan' => 'nullable|string|max:255',
             'data_mempelai_pria_lengkap'     => 'nullable|string|max:255',
             'data_mempelai_wanita_lengkap'   => 'nullable|string|max:255',
             'data_mempelai_ortu_pria'        => 'nullable|string|max:255',
             'data_mempelai_ortu_wanita'      => 'nullable|string|max:255',
-            'acara_nama_1'            => 'nullable|string|max:255',
-            'acara_tanggal_1'         => 'nullable|date',
+            'acara_nama_1'            => 'required_with:acara_tanggal_1|nullable|string|max:255',
+            'acara_tanggal_1'         => 'required_with:acara_nama_1|nullable|date|after_or_equal:today',
             'acara_waktu_1'           => 'nullable|string|max:10',
             'acara_waktu_selesai_1'   => 'nullable|string|max:10',
             'acara_zona_1'            => 'nullable|string|max:10',
@@ -134,7 +134,7 @@ class PublicController extends Controller
             'kado_digital_an_3'       => 'nullable|string|max:255',
             'kado_digital_norek_3'    => 'nullable|string|max:100',
             'kado_fisik_nama'         => 'nullable|string|max:255',
-            'kado_fisik_wa'           => 'nullable|string|max:20|regex:/^[0-9]+$/',
+            'kado_fisik_wa'           => 'nullable|string|min:10|max:15|regex:/^[0-9]+$/',
             'kado_fisik_alamat'       => 'nullable|string',
             'backsound_link'          => 'nullable|string|max:500',
             'backsound_judul'         => 'nullable|string|max:255',
@@ -152,7 +152,7 @@ class PublicController extends Controller
         $price = $priceRecord ? $priceRecord->price : ($hasPhoto ? 109000 : 79000);
         $priceId = $priceRecord ? $priceRecord->id : null;
 
-        $deadline = $request->acara_tanggal_1 ?? null;
+        $deadline = $request->acara_tanggal_1 ?? $request->acara_tanggal_2 ?? $request->acara_tanggal_3 ?? null;
 
         $formData = [
             'mempelai_pria_panggilan'   => $request->data_mempelai_pria_panggilan,
@@ -280,6 +280,7 @@ class PublicController extends Controller
 
         $messageText = "Halo Admin Va Invite! 👋\n\n"
             . "Ada pesanan baru dari formulir website:\n"
+            . "▪️ *Order ID:* #{$order->id}\n"
             . "▪️ *Nama:* " . $request->client_name . "\n"
             . "▪️ *No. WA:* " . $request->client_wa . "\n"
             . $mempelai
@@ -298,6 +299,8 @@ class PublicController extends Controller
 
         return redirect()->route('public.order.confirmation', [
             'wa_url' => urlencode($waUrl),
+            'wa_phone' => $cleanWa,
+            'order_id' => $order->id,
             'nama' => $request->client_name,
             'tema' => $request->theme_name,
             'kategori' => $request->theme_category,
@@ -311,6 +314,8 @@ class PublicController extends Controller
     {
         return view('order-confirmation', [
             'wa_url'   => urldecode($request->query('wa_url', '')),
+            'wa_phone' => strip_tags($request->query('wa_phone', '')),
+            'order_id' => strip_tags($request->query('order_id', '')),
             'nama'     => strip_tags($request->query('nama', '')),
             'tema'     => strip_tags($request->query('tema', '')),
             'kategori' => strip_tags($request->query('kategori', '')),
@@ -318,6 +323,24 @@ class PublicController extends Controller
             'harga'    => strip_tags($request->query('harga', '')),
             'mempelai' => strip_tags($request->query('mempelai', '')),
         ]);
+    }
+
+    public function trackOrder()
+    {
+        return view('track-order', ['orders' => null]);
+    }
+
+    public function trackOrderLookup(Request $request)
+    {
+        $request->validate(['phone' => 'required|string|max:20|regex:/^[0-9]+$/']);
+        $phone = $request->phone;
+        $orders = Order::where('client_wa', $phone)
+            ->orWhere('client_wa', 'like', $phone . '%')
+            ->orWhere('id', $phone)
+            ->latest()
+            ->get();
+
+        return view('track-order', ['orders' => $orders, 'phone' => $phone]);
     }
 
     private function formatWaNumber(?string $number): string
