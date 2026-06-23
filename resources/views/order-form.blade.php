@@ -353,12 +353,12 @@
                 </h4>
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Nama Acara 2 <span class="required">*</span></label>
-                        <input type="text" name="acara_nama_2" class="form-input" placeholder="Cth: Resepsi" required />
+                        <label class="form-label">Nama Acara 2</label>
+                        <input type="text" name="acara_nama_2" class="form-input" placeholder="Cth: Resepsi" />
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Tanggal Acara 2 <span class="required">*</span></label>
-                        <input type="date" name="acara_tanggal_2" class="form-input" required />
+                        <label class="form-label">Tanggal Acara 2</label>
+                        <input type="date" name="acara_tanggal_2" class="form-input" />
                     </div>
                 </div>
                 <div class="form-row">
@@ -403,12 +403,12 @@
                 </h4>
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Nama Acara 3 <span class="required">*</span></label>
-                        <input type="text" name="acara_nama_3" class="form-input" placeholder="Cth: Ngunduh Mantu" required />
+                        <label class="form-label">Nama Acara 3</label>
+                        <input type="text" name="acara_nama_3" class="form-input" placeholder="Cth: Ngunduh Mantu" />
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Tanggal Acara 3 <span class="required">*</span></label>
-                        <input type="date" name="acara_tanggal_3" class="form-input" required />
+                        <label class="form-label">Tanggal Acara 3</label>
+                        <input type="date" name="acara_tanggal_3" class="form-input" />
                     </div>
                 </div>
                 <div class="form-row">
@@ -615,21 +615,21 @@
                         <input type="radio" name="has_photo" value="1" checked />
                         <div class="radio-info">
                             <span class="radio-name">Dengan Foto</span>
-                            <span class="radio-price">Rp109.000</span>
+                            <span class="radio-price">Rp{{ number_format($priceWith, 0, ',', '.') }}</span>
                         </div>
                     </label>
                     <label class="radio-card" id="radioWithoutPhoto">
                         <input type="radio" name="has_photo" value="0" />
                         <div class="radio-info">
                             <span class="radio-name">Tanpa Foto</span>
-                            <span class="radio-price">Rp79.000</span>
+                            <span class="radio-price">Rp{{ number_format($priceWithout, 0, ',', '.') }}</span>
                         </div>
                     </label>
                 </div>
             </div>
             <div class="total-row">
                 <span class="total-label">Total Harga</span>
-                <span class="total-price" id="totalPrice">Rp109.000</span>
+                <span class="total-price" id="totalPrice">Rp{{ number_format($priceWith, 0, ',', '.') }}</span>
             </div>
         </div>
 
@@ -645,8 +645,8 @@
             <div id="fotoGallery" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;"></div>
         </div>
 
-        <button type="submit" class="btn-submit">
-            <i class="fa-solid fa-paper-plane"></i> Kirim Pesanan
+        <button type="submit" class="btn-submit" id="submitBtn">
+            <i class="fa-solid fa-paper-plane"></i> <span id="submitText">Kirim Pesanan</span>
         </button>
     </form>
 
@@ -659,6 +659,15 @@
 var acaraTerlihat = {2: false, 3: false};
 var loveTerlihat = {1: false, 2: false, 3: false, 4: false};
 var rekeningTerlihat = {1: true, 2: false, 3: false};
+
+// Double-submit prevention
+document.querySelector('form').addEventListener('submit', function() {
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.style.opacity = '0.6';
+    btn.style.pointerEvents = 'none';
+    document.getElementById('submitText').textContent = 'Mengirim...';
+});
 
 function tambahAcara() {
     if (!acaraTerlihat[2]) {
@@ -757,12 +766,12 @@ document.querySelectorAll('input[name="has_photo"]').forEach(function(r) {
         var n = document.getElementById('radioWithoutPhoto');
         var u = document.getElementById('uploadFotoSection');
         if (this.value === '1') {
-            t.textContent = 'Rp109.000';
+            t.textContent = 'Rp{{ number_format($priceWith, 0, ',', '.') }}';
             w.classList.add('selected');
             n.classList.remove('selected');
             if (u) u.style.display = 'block';
         } else {
-            t.textContent = 'Rp79.000';
+            t.textContent = 'Rp{{ number_format($priceWithout, 0, ',', '.') }}';
             n.classList.add('selected');
             w.classList.remove('selected');
             if (u) u.style.display = 'none';
@@ -818,6 +827,10 @@ document.querySelectorAll('input[name="has_photo"]').forEach(function(r) {
                     '<button type="button" onclick="hapusFoto(' + i + ')" style="position:absolute;top:4px;right:4px;background:rgba(0,0,0,0.6);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;line-height:22px;text-align:center;">&times;</button>' +
                     '<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.6);font-size:0.65rem;text-align:center;padding:2px;">' + (f.size / 1024).toFixed(0) + 'KB</div>';
                 gallery.appendChild(div);
+            };
+            reader.onerror = function() {
+                err.textContent = 'Gagal membaca file: ' + f.name;
+                err.style.display = 'block';
             };
             reader.readAsDataURL(f);
         });

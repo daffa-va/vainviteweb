@@ -266,7 +266,7 @@
             </div>
             <div class="modal-body" style="max-height:70vh;overflow-y:auto;">
                 @if ($detailOrder)
-                    @php $fd = $detailOrder->form_data ? json_decode($detailOrder->form_data, true) : null; @endphp
+                    @php $raw = $detailOrder->form_data ? json_decode($detailOrder->form_data, true) : null; $fd = is_array($raw) ? $raw : []; @endphp
 
                     <div class="detail-section">
                         <h4 style="color:var(--amber);margin-bottom:10px;font-size:0.9rem;">
@@ -394,7 +394,7 @@
                             <div style="display:flex;gap:10px;flex-wrap:wrap;">
                                 @foreach ($fd['foto'] as $f)
                                 <div style="text-align:center;">
-                                    <img src="{{ asset('storage/'.$f) }}" style="max-width:120px;max-height:120px;border-radius:8px;border:1px solid var(--border);object-fit:cover;" />
+                                    <img src="{{ asset('storage/'.$f) }}" style="max-width:120px;max-height:120px;border-radius:8px;border:1px solid var(--border);object-fit:cover;" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23666%22><path d=%22M21 19V5c0-1.1-.9-2-2-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zM8.5 13.5l2.5 3.01L14.5 12l4.5 6H5l3.5-4.5z%22/></svg>'" />
                                 </div>
                                 @endforeach
                             </div>

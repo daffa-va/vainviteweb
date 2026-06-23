@@ -6,26 +6,17 @@ use App\Models\Price;
 use App\Models\Order;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class PublicController extends Controller
 {
     public function index()
     {
         $admin = User::first();
-        $rawWa = $admin ? $admin->whatsapp_number : config('app.whatsapp_fallback');
-
-        $cleanWa = preg_replace('/[^0-9]/', '', $rawWa);
-        if (str_starts_with($cleanWa, '0')) {
-            $cleanWa = '62' . substr($cleanWa, 1);
-        }
-        if (str_starts_with($cleanWa, '8')) {
-            $cleanWa = '62' . $cleanWa;
-        }
-
         $linktree = $admin ? $admin->linktree_url : config('app.linktree_fallback');
 
         return view('index', [
-            'whatsapp_number' => $cleanWa,
+            'whatsapp_number' => $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback')),
             'linktree' => $linktree
         ]);
     }
@@ -50,14 +41,7 @@ class PublicController extends Controller
         ]);
 
         $admin = User::first();
-        $targetWa = $admin ? $admin->whatsapp_number : config('app.whatsapp_fallback');
-        $cleanWa = preg_replace('/[^0-9]/', '', $targetWa);
-        if (str_starts_with($cleanWa, '0')) {
-            $cleanWa = '62' . substr($cleanWa, 1);
-        }
-        if (str_starts_with($cleanWa, '8')) {
-            $cleanWa = '62' . $cleanWa;
-        }
+        $cleanWa = $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback'));
 
         $messageText = "Halo Va Invite! 👋\n\n"
             . "Saya tertarik dengan tema undangan berikut:\n"
@@ -80,14 +64,10 @@ class PublicController extends Controller
         $themeLink = $request->query('link', '');
 
         $admin = User::first();
-        $rawWa = $admin ? $admin->whatsapp_number : config('app.whatsapp_fallback');
-        $cleanWa = preg_replace('/[^0-9]/', '', $rawWa);
-        if (str_starts_with($cleanWa, '0')) {
-            $cleanWa = '62' . substr($cleanWa, 1);
-        }
-        if (str_starts_with($cleanWa, '8')) {
-            $cleanWa = '62' . $cleanWa;
-        }
+        $cleanWa = $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback'));
+
+        $priceWith = Price::where('category', $themeCategory)->where('name', 'Dengan Foto')->value('price') ?? 109000;
+        $priceWithout = Price::where('category', $themeCategory)->where('name', 'Tanpa Foto')->value('price') ?? 79000;
 
         return view('order-form', [
             'slug'            => $slug,
@@ -95,6 +75,8 @@ class PublicController extends Controller
             'themeName'       => $themeName,
             'themeLink'       => $themeLink,
             'whatsapp_number' => $cleanWa,
+            'priceWith'       => $priceWith,
+            'priceWithout'    => $priceWithout,
         ]);
     }
 
@@ -107,7 +89,7 @@ class PublicController extends Controller
             'theme_link'              => 'nullable|string',
             'has_photo'               => 'required|in:0,1',
             'client_name'             => 'required|string|max:255',
-            'client_wa'               => 'required|string|max:20',
+            'client_wa'               => 'required|string|max:20|regex:/^[0-9]+$/',
             'data_mempelai_pria_panggilan'   => 'nullable|string|max:255',
             'data_mempelai_wanita_panggilan' => 'nullable|string|max:255',
             'data_mempelai_pria_lengkap'     => 'nullable|string|max:255',
@@ -152,7 +134,7 @@ class PublicController extends Controller
             'kado_digital_an_3'       => 'nullable|string|max:255',
             'kado_digital_norek_3'    => 'nullable|string|max:100',
             'kado_fisik_nama'         => 'nullable|string|max:255',
-            'kado_fisik_wa'           => 'nullable|string|max:20',
+            'kado_fisik_wa'           => 'nullable|string|max:20|regex:/^[0-9]+$/',
             'kado_fisik_alamat'       => 'nullable|string',
             'backsound_link'          => 'nullable|string|max:500',
             'backsound_judul'         => 'nullable|string|max:255',
@@ -247,7 +229,7 @@ class PublicController extends Controller
                 ? 'Pemesanan via form website: ' . $request->data_mempelai_pria_panggilan . ' & ' . $request->data_mempelai_wanita_panggilan
                 : 'Pemesanan mandiri dari formulir website.');
 
-        Order::create([
+        $order = Order::create([
             'price_id'       => $priceId,
             'client_name'    => $request->client_name,
             'client_wa'      => $request->client_wa,
@@ -263,15 +245,15 @@ class PublicController extends Controller
             'deadline'       => $deadline,
         ]);
 
+        Log::info('Order baru dibuat', [
+            'order_id' => $order->id,
+            'client_name' => $request->client_name,
+            'client_wa' => $request->client_wa,
+            'total_price' => $price,
+        ]);
+
         $admin = User::first();
-        $targetWa = $admin ? $admin->whatsapp_number : config('app.whatsapp_fallback');
-        $cleanWa = preg_replace('/[^0-9]/', '', $targetWa);
-        if (str_starts_with($cleanWa, '0')) {
-            $cleanWa = '62' . substr($cleanWa, 1);
-        }
-        if (str_starts_with($cleanWa, '8')) {
-            $cleanWa = '62' . $cleanWa;
-        }
+        $cleanWa = $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback'));
 
         $fotoLabel = $hasPhoto ? 'Dengan Foto' : 'Tanpa Foto';
         $mempelai = '';
@@ -329,12 +311,23 @@ class PublicController extends Controller
     {
         return view('order-confirmation', [
             'wa_url'   => urldecode($request->query('wa_url', '')),
-            'nama'     => $request->query('nama', ''),
-            'tema'     => $request->query('tema', ''),
-            'kategori' => $request->query('kategori', ''),
-            'opsi'     => $request->query('opsi', ''),
-            'harga'    => $request->query('harga', ''),
-            'mempelai' => $request->query('mempelai', ''),
+            'nama'     => strip_tags($request->query('nama', '')),
+            'tema'     => strip_tags($request->query('tema', '')),
+            'kategori' => strip_tags($request->query('kategori', '')),
+            'opsi'     => strip_tags($request->query('opsi', '')),
+            'harga'    => strip_tags($request->query('harga', '')),
+            'mempelai' => strip_tags($request->query('mempelai', '')),
         ]);
+    }
+
+    private function formatWaNumber(?string $number): string
+    {
+        $clean = preg_replace('/[^0-9]/', '', $number ?? '');
+        if (str_starts_with($clean, '0')) {
+            $clean = '62' . substr($clean, 1);
+        } elseif (str_starts_with($clean, '8')) {
+            $clean = '62' . $clean;
+        }
+        return $clean;
     }
 }

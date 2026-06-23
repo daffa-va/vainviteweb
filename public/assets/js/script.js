@@ -13,7 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
             navbar.classList.remove("scrolled");
         }
     };
-    window.addEventListener("scroll", handleNavScroll, { passive: true });
+    let ticking = false;
+    window.addEventListener("scroll", () => {
+        if (!ticking) {
+            requestAnimationFrame(() => { handleNavScroll(); ticking = false; });
+            ticking = true;
+        }
+    }, { passive: true });
     handleNavScroll();
 
     // ── 2. MOBILE HAMBURGER ─────────────────────────────────────────

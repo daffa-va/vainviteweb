@@ -7,7 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $guarded = ['id'];
+    protected $fillable = [
+        'price_id',
+        'client_name',
+        'client_wa',
+        'total_price',
+        'custom_note',
+        'status',
+        'theme_slug',
+        'theme_name',
+        'theme_category',
+        'theme_link',
+        'result_link',
+        'has_photo',
+        'deadline',
+        'form_data',
+    ];
 
     public function price()
     {

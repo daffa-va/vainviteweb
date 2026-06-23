@@ -72,10 +72,16 @@ class KelolaOrder extends Component
 
     public function updatedFormHasPhoto($value)
     {
+        if (!$this->form->orderId) return;
+        $order = Order::with('price')->find($this->form->orderId);
+        if (!$order) return;
+        $category = $order->theme_category;
         if ($value === '1') {
-            $this->form->totalPrice = 109000;
+            $price = Price::where('category', $category)->where('name', 'Dengan Foto')->value('price');
+            $this->form->totalPrice = $price ?: 109000;
         } elseif ($value === '0') {
-            $this->form->totalPrice = 79000;
+            $price = Price::where('category', $category)->where('name', 'Tanpa Foto')->value('price');
+            $this->form->totalPrice = $price ?: 79000;
         }
     }
 

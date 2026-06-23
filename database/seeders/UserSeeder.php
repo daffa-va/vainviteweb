@@ -20,8 +20,9 @@ class UserSeeder extends Seeder
             User::updateOrCreate(
                 ['email' => "user{$i}@example.com"],
                 [
-                    'name' => 'User ' . $i,
-                    'password' => (string) $i,
+                    'name'     => 'User ' . $i,
+                    'password' => \Illuminate\Support\Facades\Hash::make((string) $i),
+                    'role'     => 'admin',
                 ]
             );
         }
