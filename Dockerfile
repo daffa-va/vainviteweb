@@ -26,6 +26,10 @@ COPY . .
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader
 
+# Create .env from .env.example
+RUN cp .env.example .env && \
+    php artisan key:generate
+
 # Create necessary directories
 RUN mkdir -p storage/logs storage/framework/sessions storage/framework/views storage/framework/cache
 
