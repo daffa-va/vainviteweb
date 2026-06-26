@@ -196,11 +196,11 @@
                         <div style="display:flex; gap:16px; margin-top:6px;">
                             <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
                                 <input type="radio" name="hasPhoto" wire:model.live="form.hasPhoto" value="1" />
-                                <span>Dengan Foto — Rp109.000</span>
+                                <span>Dengan Foto — Rp{{ number_format($priceWith, 0, ',', '.') }}</span>
                             </label>
                             <label style="display:flex; align-items:center; gap:6px; cursor:pointer;">
                                 <input type="radio" name="hasPhoto" wire:model.live="form.hasPhoto" value="0" />
-                                <span>Tanpa Foto — Rp79.000</span>
+                                <span>Tanpa Foto — Rp{{ number_format($priceWithout, 0, ',', '.') }}</span>
                             </label>
                         </div>
                     </div>

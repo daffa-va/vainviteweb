@@ -6,7 +6,7 @@
     <title>Lacak Pesanan — Va Invite</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/icon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-free-7/css/all.min.css') }}" />
     <style>
         * { margin:0; padding:0; box-sizing:border-box; }
         body {
@@ -81,8 +81,7 @@
         <p class="subtitle">Masukkan nomor WhatsApp yang digunakan saat order untuk melihat status pesanan.</p>
 
         <div class="search-card">
-            <form action="{{ route('public.order.track.lookup') }}" method="POST">
-                @csrf
+            <form action="{{ route('public.order.track') }}" method="GET">
                 <input type="tel" name="phone" placeholder="Cth: 08123456789" value="{{ $phone ?? '' }}" required />
                 <button type="submit"><i class="fa-solid fa-search"></i> Cari</button>
             </form>

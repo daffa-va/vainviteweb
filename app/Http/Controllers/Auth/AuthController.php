@@ -10,106 +10,115 @@ use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Str;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
     public function login()
     {
-        if (Auth::check()) {
-            return redirect()->route('admin.dashboard');
+        try {
+            if (Auth::check()) {
+                return redirect()->route('admin.dashboard');
+            }
+            return view('auth.login');
+        } catch (\Exception $e) {
+            Log::error('Login page error: ' . $e->getMessage());
+            return view('auth.login');
         }
-        return view('auth.login');
     }
 
     public function progressLogin(Request $request)
     {
-        $credentials = $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required', 'string'],
-        ], [
-            'email.required'    => 'Kolom email wajib diisi.',
-            'email.email'       => 'Format alamat email tidak valid.',
-            'password.required' => 'Kolom password wajib diisi.',
-        ]);
+        try {
+            $credentials = $request->validate([
+                'email'    => ['required', 'email'],
+                'password' => ['required', 'string'],
+            ], [
+                'email.required'    => 'Kolom email wajib diisi.',
+                'email.email'       => 'Format alamat email tidak valid.',
+                'password.required' => 'Kolom password wajib diisi.',
+            ]);
 
-        // Remember me
-        $remember = $request->has('remember');
+            $remember = $request->has('remember');
 
-        if (Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
+            if (Auth::attempt($credentials, $remember)) {
+                $request->session()->regenerate();
 
-            if ($remember) {
-                // Ambil semua cookie yang ada pada request saat ini
-                foreach (headers_list() as $header) {
-                    if (Str::startsWith($header, 'Set-Cookie: remember_web_')) {
-                        // Cari nama cookie remember bawaan guard auth web Laravel
-                        $cookieName = Auth::getRecallerName();
-                        $cookieValue = $request->cookies->get($cookieName) ?? Auth::user()->getRememberToken();
+                Cache::flush();
 
-                        if ($cookieValue) {
-                            // Set ulang cookie tersebut dengan durasi 30 hari (43200 menit)
-                            Cookie::queue($cookieName, $cookieValue, 43200);
-                        }
-                        break;
-                    }
+                if ($remember) {
+                    Cookie::queue(Auth::getRecallerName(), Auth::user()->getRememberToken(), 43200);
                 }
 
-                // Pengaman alternatif: Antrekan langsung cookie jika Laravel belum sempat menulisnya ke header
-                Cookie::queue(Auth::getRecallerName(), Auth::user()->getRememberToken(), 43200);
+                return redirect()->intended(route('admin.dashboard'));
             }
 
-            // Alihkan masuk ke halaman utama admin dashboard
-            return redirect()->intended(route('admin.dashboard'));
+            throw ValidationException::withMessages([
+                'email' => 'Email atau password yang Anda masukkan salah!',
+            ]);
+        } catch (ValidationException $e) {
+            throw $e;
+        } catch (\Exception $e) {
+            Log::error('Login error: ' . $e->getMessage());
+            return back()->withInput()->with('error', 'Terjadi kesalahan sistem. Silakan coba lagi.');
         }
-
-        // 4. Jika gagal, lemparkan error kembali ke halaman login dengan input email lama
-        throw ValidationException::withMessages([
-            'email' => 'Email atau password yang Anda masukkan salah!',
-        ]);
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        try {
+            Cache::flush();
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        } catch (\Exception $e) {
+            Log::error('Logout error: ' . $e->getMessage());
+        }
         return redirect()->route('login');
     }
 
     public function buatUser()
     {
-        $adminEmail = 'admin@vadesign.com';
+        try {
+            $adminEmail = 'admin@vadesign.com';
 
-        // 2. Cek apakah user dengan email tersebut sudah terdaftar di database
-        $userExists = User::where('email', $adminEmail)->exists();
+            $userExists = User::where('email', $adminEmail)->exists();
 
-        if ($userExists) {
+            if ($userExists) {
+                return response('<div style="font-family: sans-serif; text-align: center; margin-top: 100px;">
+                <h1 style="color: #eab308;">⚠️ Akses Ditolak</h1>
+                <p style="color: #64748b;">Akun utama admin dengan email <strong>' . $adminEmail . '</strong> sudah dibuat sebelumnya!</p>
+                <a href="' . route('login') . '" style="color: #3b82f6; text-decoration: none; font-weight: 600;">Ke Halaman Login &rarr;</a>
+            </div>', 200)->header('Content-Type', 'text/html');
+            }
+
+            User::create([
+                'name'             => 'Admin Va Invite',
+                'email'            => $adminEmail,
+                'password'         => Hash::make('passwordadmin123'),
+                'whatsapp_number'  => '087760058673',
+                'linktree_url'     => 'https://linktr.ee/VaDesignn',
+                'role'             => 'admin',
+            ]);
+
             return response('<div style="font-family: sans-serif; text-align: center; margin-top: 100px;">
-            <h1 style="color: #eab308;">⚠️ Akses Ditolak</h1>
-            <p style="color: #64748b;">Akun utama admin dengan email <strong>' . $adminEmail . '</strong> sudah dibuat sebelumnya!</p>
-            <a href="' . route('login') . '" style="color: #3b82f6; text-decoration: none; font-weight: 600;">Ke Halaman Login &rarr;</a>
+            <h1 style="color: #22c55e;">🎉 Sukses Besar!</h1>
+            <p style="color: #64748b;">Akun master admin berhasil disuntikkan ke database SQLite.</p>
+            <div style="background: #1e293b; color: #f8fafc; display: inline-block; padding: 15px 25px; border-radius: 8px; text-align: left; margin: 15px 0;">
+                <strong>Email:</strong> ' . $adminEmail . '<br>
+                <strong>Password:</strong> passwordadmin123
+            </div>
+            <br><br>
+            <a href="' . route('login') . '" style="color: #3b82f6; text-decoration: none; font-weight: 600;">Lanjut ke Halaman Login &rarr;</a>
         </div>', 200)->header('Content-Type', 'text/html');
+        } catch (\Exception $e) {
+            Log::error('Create admin user error: ' . $e->getMessage());
+            return response('<div style="font-family: sans-serif; text-align: center; margin-top: 100px;">
+            <h1 style="color: #ef4444;">❌ Error</h1>
+            <p style="color: #64748b;">Gagal membuat akun admin: ' . $e->getMessage() . '</p>
+            <a href="' . route('login') . '" style="color: #3b82f6; text-decoration: none; font-weight: 600;">Ke Halaman Login &rarr;</a>
+        </div>', 500)->header('Content-Type', 'text/html');
         }
-
-        // 3. Jika belum ada, buat user admin baru (Sesuai struktur tabel kamu yang sudah dirampingkan)
-        User::create([
-            'name'             => 'Admin Va Invite',
-            'email'            => $adminEmail,
-            'password'         => Hash::make('passwordadmin123'),
-            'whatsapp_number'  => '087760058673',
-            'linktree_url'     => 'https://linktr.ee/VaDesignn',
-            'role'             => 'admin',
-        ]);
-
-        return response('<div style="font-family: sans-serif; text-align: center; margin-top: 100px;">
-        <h1 style="color: #22c55e;">🎉 Sukses Besar!</h1>
-        <p style="color: #64748b;">Akun master admin berhasil disuntikkan ke database SQLite.</p>
-        <div style="background: #1e293b; color: #f8fafc; display: inline-block; padding: 15px 25px; border-radius: 8px; text-align: left; margin: 15px 0;">
-            <strong>Email:</strong> ' . $adminEmail . '<br>
-            <strong>Password:</strong> passwordadmin123
-        </div>
-        <br><br>
-        <a href="' . route('login') . '" style="color: #3b82f6; text-decoration: none; font-weight: 600;">Lanjut ke Halaman Login &rarr;</a>
-    </div>', 200)->header('Content-Type', 'text/html');
     }
 }

@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order Terkirim — Va Invite</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/x-icon" href="<?php echo e(asset('assets/img/icon.ico')); ?>">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body {
+            background: #0a0a0a;
+            color: #f1f5f9;
+            font-family: 'Outfit', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 24px;
+        }
+        .card {
+            background: #141414;
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 16px;
+            padding: 48px 32px;
+            max-width: 480px;
+            width: 100%;
+        }
+        .icon { font-size: 3rem; margin-bottom: 16px; }
+        h1 { font-family: 'Playfair Display', serif; font-size: 1.6rem; margin-bottom: 8px; }
+        p { color: #94a3b8; line-height: 1.6; margin-bottom: 24px; }
+        .summary { text-align: left; background: #1a1a1a; border-radius: 10px; padding: 16px; margin-bottom: 24px; font-size: 0.85rem; }
+        .summary-row { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+        .summary-row:last-child { border-bottom: none; }
+        .summary-label { color: #64748b; }
+        .summary-value { color: #f1f5f9; font-weight: 500; }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: #000; font-weight: 700; padding: 14px 28px;
+            border-radius: 10px; text-decoration: none; font-size: 1rem;
+            transition: 0.3s;
+        }
+        .btn:hover { transform: scale(1.03); box-shadow: 0 0 20px rgba(245,158,11,0.3); }
+        .btn-secondary {
+            display: inline-block; margin-top: 12px;
+            color: #f59e0b; text-decoration: none; font-size: 0.9rem;
+        }
+        .btn-secondary:hover { text-decoration: underline; }
+        .countdown { font-size: 0.8rem; color: #64748b; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="icon">✅</div>
+        <h1>Order Terkirim!</h1>
+        <p>Terima kasih, pesanan kamu sudah tercatat di sistem kami. Silakan lanjut ke WhatsApp untuk konfirmasi lebih lanjut.</p>
+
+        <div class="summary">
+            <div class="summary-row">
+                <span class="summary-label">Order ID</span>
+                <span class="summary-value">#<?php echo e($order_id); ?> <button type="button" onclick="navigator.clipboard.writeText('<?php echo e($order_id); ?>').then(()=>{var t=this;t.textContent='Tersalin!';setTimeout(()=>t.textContent='Salin',2000)}).catch(()=>{})" style="background:none;border:1px solid rgba(255,255,255,0.2);color:#f59e0b;border-radius:6px;padding:1px 8px;font-size:0.72rem;cursor:pointer;margin-left:6px;vertical-align:middle;">Salin</button></span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Nama</span>
+                <span class="summary-value"><?php echo e($nama); ?></span>
+            </div>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($mempelai): ?>
+            <div class="summary-row">
+                <span class="summary-label">Mempelai</span>
+                <span class="summary-value"><?php echo e($mempelai); ?></span>
+            </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['mempelai_pria_panggilan']) || !empty($formData['mempelai_pria_lengkap'])): ?>
+            <div class="summary-row" style="flex-direction:column;gap:2px;padding:8px 0;">
+                <span class="summary-label" style="margin-bottom:4px;">Data Mempelai Pria</span>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['mempelai_pria_panggilan'])): ?><span class="summary-value" style="font-size:0.8rem;">Panggilan: <?php echo e($formData['mempelai_pria_panggilan']); ?></span><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['mempelai_pria_lengkap'])): ?><span class="summary-value" style="font-size:0.8rem;">Lengkap: <?php echo e($formData['mempelai_pria_lengkap']); ?></span><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['mempelai_wanita_panggilan']) || !empty($formData['mempelai_wanita_lengkap'])): ?>
+            <div class="summary-row" style="flex-direction:column;gap:2px;padding:8px 0;">
+                <span class="summary-label" style="margin-bottom:4px;">Data Mempelai Wanita</span>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['mempelai_wanita_panggilan'])): ?><span class="summary-value" style="font-size:0.8rem;">Panggilan: <?php echo e($formData['mempelai_wanita_panggilan']); ?></span><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['mempelai_wanita_lengkap'])): ?><span class="summary-value" style="font-size:0.8rem;">Lengkap: <?php echo e($formData['mempelai_wanita_lengkap']); ?></span><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['ortu_pria']) || !empty($formData['ortu_wanita'])): ?>
+            <div class="summary-row" style="flex-direction:column;gap:2px;padding:8px 0;">
+                <span class="summary-label" style="margin-bottom:4px;">Orang Tua</span>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['ortu_pria'])): ?><span class="summary-value" style="font-size:0.8rem;">Pria: <?php echo e($formData['ortu_pria']); ?></span><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(!empty($formData['ortu_wanita'])): ?><span class="summary-value" style="font-size:0.8rem;">Wanita: <?php echo e($formData['ortu_wanita']); ?></span><?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            </div>
+            <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
+            <div class="summary-row">
+                <span class="summary-label">Tema</span>
+                <span class="summary-value"><?php echo e($tema); ?></span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Kategori</span>
+                <span class="summary-value"><?php echo e($kategori); ?></span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Opsi</span>
+                <span class="summary-value"><?php echo e($opsi); ?></span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">Harga</span>
+                <span class="summary-value">Rp <?php echo e($harga); ?></span>
+            </div>
+        </div>
+
+        <div style="background:#1a1a1a;border-radius:10px;padding:14px 16px;margin-bottom:18px;text-align:left;font-size:0.82rem;">
+            <div style="color:#94a3b8;margin-bottom:4px;"><i class="fa-regular fa-clock"></i> Estimasi pengerjaan: <strong style="color:#f1f5f9;">10–24 jam</strong></div>
+            <div style="color:#94a3b8;"><i class="fa-regular fa-note-sticky"></i> Simpan Order ID <strong style="color:#f59e0b;">#<?php echo e($order_id); ?></strong> untuk lacak pesanan</div>
+        </div>
+
+        <div style="display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap;justify-content:center;">
+            <a href="<?php echo e(route('public.order.track')); ?>" style="display:inline-flex;align-items:center;gap:6px;color:#f59e0b;text-decoration:none;font-size:0.82rem;border:1px solid rgba(245,158,11,0.3);padding:8px 16px;border-radius:8px;">
+                <i class="fa-solid fa-search"></i> Lacak Pesanan
+            </a>
+            <a href="https://wa.me/<?php echo e($wa_phone); ?>" target="_blank" style="display:inline-flex;align-items:center;gap:6px;color:#94a3b8;text-decoration:none;font-size:0.82rem;border:1px solid rgba(255,255,255,0.1);padding:8px 16px;border-radius:8px;">
+                <i class="fa-regular fa-message"></i> Request Revisi
+            </a>
+        </div>
+
+        <a href="<?php echo e($wa_url); ?>" target="_blank" class="btn" id="waBtn">
+            <i class="fa-brands fa-whatsapp"></i> Lanjut ke WhatsApp
+        </a>
+        <br />
+        <a href="<?php echo e(route('home')); ?>" class="btn-secondary">Kembali ke Beranda</a>
+        <div class="countdown">Halaman ini akan otomatis mengarahkan ke WhatsApp dalam <span id="timer">8</span> detik...</div>
+    </div>
+
+    <link rel="stylesheet" href="<?php echo e(asset('assets/vendor/fontawesome-free-7/css/all.min.css')); ?>" />
+    <script>
+        let seconds = 8;
+        const timer = document.getElementById('timer');
+        const btn = document.getElementById('waBtn');
+        const interval = setInterval(() => {
+            seconds--;
+            timer.textContent = seconds;
+            if (seconds <= 0) {
+                clearInterval(interval);
+                window.open(btn.href, '_blank');
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
+<?php /**PATH C:\Users\ASUS\Documents\vadesign-main\resources\views\order-confirmation.blade.php ENDPATH**/ ?>

@@ -12,15 +12,13 @@ Route::get('/order/form/{slug}', [PublicController::class, 'orderForm'])->name('
 
 Route::get('/track-order', [PublicController::class, 'trackOrder'])->name('public.order.track');
 
-Route::post('/track-order', [PublicController::class, 'trackOrderLookup'])->name('public.order.track.lookup');
-
 Route::get('/order/theme/{slug}', [PublicController::class, 'orderTheme'])->name('public.order.theme');
 
 Route::get('/order-confirmation', [PublicController::class, 'confirmation'])->name('public.order.confirmation');
 
 Route::prefix('authentication')->group(function () {
     Route::get('login', [AuthController::class, 'login'])->name('login');
-    Route::post('login', [AuthController::class, 'progressLogin'])->name('login.post');
+    Route::post('login', [AuthController::class, 'progressLogin'])->name('login.post')->middleware('throttle:5,1');
 });
 
 

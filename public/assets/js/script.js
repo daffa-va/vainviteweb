@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // ── 4. STAGGER CHILDREN on service/price/why cards ──────────────
     const staggerParents = document.querySelectorAll(
-        ".services-grid, .pricing-grid, .why-grid",
+        ".services-grid, .pricing-panel, .why-grid",
     );
 
     staggerParents.forEach((parent) => {
@@ -94,10 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute("id");
                     navAnchor.forEach((a) => {
-                        a.style.color =
-                            a.getAttribute("href") === `#${id}`
-                                ? "var(--white)"
-                                : "";
+                        a.classList.toggle("active", a.getAttribute("href") === `#${id}`);
                     });
                 }
             });
@@ -364,7 +361,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ── 14. FAQ ACCORDION ──────────────────────────────────────────────
+    // ── 14. PRICING TABS ──────────────────────────────────────────────
+    var pricingTabs = document.querySelectorAll(".pricing-tab");
+    var pricingPanels = document.querySelectorAll(".pricing-panel");
+
+    pricingTabs.forEach(function(tab) {
+        tab.addEventListener("click", function() {
+            pricingTabs.forEach(function(t) { t.classList.remove("active"); });
+            pricingPanels.forEach(function(p) { p.classList.remove("active"); });
+            this.classList.add("active");
+            var target = document.getElementById("pricingPanel-" + this.getAttribute("data-pricing-cat"));
+            if (target) target.classList.add("active");
+        });
+    });
+
+    // ── 15. FAQ ACCORDION ──────────────────────────────────────────────
     document.querySelectorAll(".faq-question").forEach(function(btn) {
         btn.addEventListener("click", function() {
             var item = this.closest(".faq-item");
@@ -375,6 +386,21 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!isOpen) {
                 item.classList.add("open");
             }
+        });
+    });
+
+    // ── 16. LOADING SPINNER for all forms ──────────────────────────────
+    document.querySelectorAll("form").forEach(function(form) {
+        form.addEventListener("submit", function() {
+            var btns = this.querySelectorAll('button[type="submit"]');
+            btns.forEach(function(btn) {
+                btn.classList.add("btn-loading");
+                var textSpan = document.createElement("span");
+                textSpan.className = "btn-text";
+                textSpan.textContent = btn.textContent;
+                btn.textContent = "";
+                btn.appendChild(textSpan);
+            });
         });
     });
 });

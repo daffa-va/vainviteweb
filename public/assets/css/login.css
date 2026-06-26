@@ -293,3 +293,24 @@ body {
 .icon-spacing {
     margin-left: 4px;
 }
+
+/* Responsive untuk layar kecil */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 28px 18px;
+    }
+    .brand-title {
+        font-size: 2rem;
+    }
+    .login-container {
+        padding: 12px;
+    }
+    .input-wrapper input {
+        padding: 14px;
+        font-size: 0.9rem;
+    }
+    .login-btn {
+        padding: 14px;
+        font-size: 0.9rem;
+    }
+}

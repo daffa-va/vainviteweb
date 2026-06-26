@@ -37,6 +37,31 @@ class KelolaOrder extends Component
         'Party & Dinner', 'School & Graduation'
     ];
 
+    public $priceWith;
+    public $priceWithout;
+
+    public function mount()
+    {
+        $this->updatePrices();
+    }
+
+    public function updatedFormThemeCategory()
+    {
+        $this->updatePrices();
+    }
+
+    private function updatePrices()
+    {
+        $cat = $this->form->themeCategory;
+        if ($cat) {
+            $this->priceWith = Price::where('category', $cat)->where('name', 'Dengan Foto')->value('price') ?? 109000;
+            $this->priceWithout = Price::where('category', $cat)->where('name', 'Tanpa Foto')->value('price') ?? 79000;
+        } else {
+            $this->priceWith = 109000;
+            $this->priceWithout = 79000;
+        }
+    }
+
     public function updatedSearch()
     {
         $this->resetPage();

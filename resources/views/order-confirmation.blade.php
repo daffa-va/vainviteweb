@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Order Terkirim — Va Invite</title>
+    <meta name="robots" content="noindex, nofollow" />
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/icon.ico') }}">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -72,6 +73,27 @@
                 <span class="summary-value">{{ $mempelai }}</span>
             </div>
             @endif
+            @if(!empty($formData['mempelai_pria_panggilan']) || !empty($formData['mempelai_pria_lengkap']))
+            <div class="summary-row" style="flex-direction:column;gap:2px;padding:8px 0;">
+                <span class="summary-label" style="margin-bottom:4px;">Data Mempelai Pria</span>
+                @if(!empty($formData['mempelai_pria_panggilan']))<span class="summary-value" style="font-size:0.8rem;">Panggilan: {{ $formData['mempelai_pria_panggilan'] }}</span>@endif
+                @if(!empty($formData['mempelai_pria_lengkap']))<span class="summary-value" style="font-size:0.8rem;">Lengkap: {{ $formData['mempelai_pria_lengkap'] }}</span>@endif
+            </div>
+            @endif
+            @if(!empty($formData['mempelai_wanita_panggilan']) || !empty($formData['mempelai_wanita_lengkap']))
+            <div class="summary-row" style="flex-direction:column;gap:2px;padding:8px 0;">
+                <span class="summary-label" style="margin-bottom:4px;">Data Mempelai Wanita</span>
+                @if(!empty($formData['mempelai_wanita_panggilan']))<span class="summary-value" style="font-size:0.8rem;">Panggilan: {{ $formData['mempelai_wanita_panggilan'] }}</span>@endif
+                @if(!empty($formData['mempelai_wanita_lengkap']))<span class="summary-value" style="font-size:0.8rem;">Lengkap: {{ $formData['mempelai_wanita_lengkap'] }}</span>@endif
+            </div>
+            @endif
+            @if(!empty($formData['ortu_pria']) || !empty($formData['ortu_wanita']))
+            <div class="summary-row" style="flex-direction:column;gap:2px;padding:8px 0;">
+                <span class="summary-label" style="margin-bottom:4px;">Orang Tua</span>
+                @if(!empty($formData['ortu_pria']))<span class="summary-value" style="font-size:0.8rem;">Pria: {{ $formData['ortu_pria'] }}</span>@endif
+                @if(!empty($formData['ortu_wanita']))<span class="summary-value" style="font-size:0.8rem;">Wanita: {{ $formData['ortu_wanita'] }}</span>@endif
+            </div>
+            @endif
             <div class="summary-row">
                 <span class="summary-label">Tema</span>
                 <span class="summary-value">{{ $tema }}</span>
@@ -112,7 +134,7 @@
         <div class="countdown">Halaman ini akan otomatis mengarahkan ke WhatsApp dalam <span id="timer">8</span> detik...</div>
     </div>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fontawesome-free-7/css/all.min.css') }}" />
     <script>
         let seconds = 8;
         const timer = document.getElementById('timer');

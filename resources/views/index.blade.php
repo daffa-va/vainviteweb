@@ -92,8 +92,8 @@
             <ul class="nav-links" id="navLinks">
                 <li><a href="#services">Fitur</a></li>
                 <li><a href="#catalog">Katalog</a></li>
-                <li><a href="#steps">Cara Order</a></li>
                 <li><a href="#pricing">Harga</a></li>
+                <li><a href="#steps">Cara Order</a></li>
                 <li><a href="#why">Keunggulan</a></li>
                 <li><a href="{{ route('public.order.track') }}"><i class="fa-solid fa-search"></i> Lacak</a></li>
                 <li>
@@ -116,7 +116,7 @@
 Undangan Digital
             </div>
             <h1 class="hero-title reveal">
-                <span class="line">Buat hari Spesial anda</span>
+                <span class="line">Buat hari Spesial Anda</span>
                 <span class="line accent-text">menjadi Lebih Spesial dengan Undangan Eksklusif</span>
             </h1>
             <p class="hero-sub reveal">
@@ -210,53 +210,6 @@ Undangan Digital
         </div>
     </section>
 
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <div class="section-header reveal">
-                <span class="section-tag">— Pricelist</span>
-                <h2 class="section-title">
-                    Harga yang <span class="accent-text">Terjangkau</span>
-                </h2>
-            </div>
-            <div class="pricing-grid">
-                <div class="price-card reveal featured-card" data-delay="0">
-                    <div class="price-card-header">
-                        <span class="price-icon"><i class="fa-solid fa-envelope" style="color: #f59e0b"></i></span>
-                        <div>
-                            <h3>Pilih Tema Anda</h3>
-                            <span class="price-free-barcode"><i class="fa-solid fa-qrcode"></i> Free Barcode</span>
-                        </div>
-                    </div>
-                    <ul class="price-list">
-                        <li>
-                            <span class="price-item">
-                                <span class="price-item-name">Tanpa Foto</span>
-                                <span class="price-item-badge best">Hemat</span>
-                            </span>
-                            <span class="price-val">
-                                <span class="price-new">Rp79.000</span>
-                            </span>
-                        </li>
-                        <li>
-                            <span class="price-item">
-                                <span class="price-item-name">Dengan Foto</span>
-                                <span class="price-item-badge best">Terlaris</span>
-                            </span>
-                            <span class="price-val">
-                                <span class="price-new">Rp109.000</span>
-                            </span>
-                        </li>
-                    </ul>
-                    <div class="price-note-wrap"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Penting:</strong> Tema tidak dapat di-<em>mix</em> atau ganti warna</div>
-                    <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
-                        target="_blank" class="btn-card">
-                        <i class="fa-solid fa-circle-dollar-to-slot icon-spacing"></i> Order Sekarang
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section class="catalog" id="catalog">
         <div class="container">
             @php
@@ -296,6 +249,7 @@ Undangan Digital
                 $totalThemes = array_sum(array_column($cats, 'count'));
                 $catPrices = Cache::remember('cat_prices', 3600, function () use ($cats) {
                     $result = [];
+                    if (!is_array($cats)) return $result;
                     foreach ($cats as $c) {
                         $dengan = \App\Models\Price::where('category', $c['label'])->where('name', 'Dengan Foto')->value('price');
                         $tanpa = \App\Models\Price::where('category', $c['label'])->where('name', 'Tanpa Foto')->value('price');
@@ -303,7 +257,8 @@ Undangan Digital
                     }
                     return $result;
                 });
-                $globalMin = min(array_column($catPrices, 'without'));
+                if (!is_array($catPrices)) $catPrices = [];
+                $globalMin = !empty($catPrices) ? min(array_column($catPrices, 'without')) : 79000;
             @endphp
             <div class="catalog-head">
                 <h3 class="catalog-head-title">Pilih Tema <span class="accent-text">Sesuai Kebutuhanmu</span></h3>
@@ -339,7 +294,7 @@ Undangan Digital
                             <div class="theme-item">
                                 <div class="theme-img-wrap">
                                     @if($hasImg)
-                                        <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $name }}" class="theme-img" loading="lazy" />
+                                        <img src="{{ asset('assets/img/themes/'.$slug.'.'.$fileMap[$slug]) }}" alt="{{ $name }}" class="theme-img" loading="lazy" style="background:{{ $color }}" />
                                     @else
                                         <div class="theme-img-placeholder" style="background:{{ $color }}">{{ $name[0]??'?' }}</div>
                                     @endif
@@ -363,6 +318,64 @@ Undangan Digital
                     <a href="{{ route('public.order.form', ['slug' => $firstSlug, 'category' => $cat['label'], 'name' => $firstName, 'link' => $firstLink]) }}" class="btn-theme">
                         <i class="fa-solid fa-circle-dollar-to-slot icon-spacing"></i> Order via WhatsApp
                     </a>
+                </div>
+            @endforeach
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-header reveal">
+                <span class="section-tag">— Pricelist</span>
+                <h2 class="section-title">
+                    Harga yang <span class="accent-text">Terjangkau</span>
+                </h2>
+            </div>
+            <div class="pricing-tabs" id="pricingTabs">
+                @foreach($cats as $ci => $cat)
+                    <button type="button" class="pricing-tab {{ $ci === 0 ? 'active' : '' }}" data-pricing-cat="{{ $cat['id'] }}">
+                        <i class="fa-solid {{ $cat['icon'] }}"></i>
+                        <span>{{ $cat['label'] }}</span>
+                    </button>
+                @endforeach
+            </div>
+            @foreach($cats as $ci => $cat)
+                @php $pc = $catPrices[$cat['id']] ?? ['with' => 109000, 'without' => 79000]; @endphp
+                <div class="pricing-panel {{ $ci === 0 ? 'active' : '' }}" id="pricingPanel-{{ $cat['id'] }}">
+                    <div class="price-card featured-card reveal" data-delay="0">
+                        <div class="price-card-header">
+                            <span class="price-icon"><i class="fa-solid {{ $cat['icon'] }}" style="color:#f59e0b"></i></span>
+                            <div>
+                                <h3>{{ $cat['label'] }}</h3>
+                                <span class="price-free-barcode"><i class="fa-solid fa-qrcode"></i> Free Barcode</span>
+                            </div>
+                        </div>
+                        <ul class="price-list">
+                            <li>
+                                <span class="price-item">
+                                    <span class="price-item-name">Tanpa Foto</span>
+                                    <span class="price-item-badge best">Hemat</span>
+                                </span>
+                                <span class="price-val">
+                                    <span class="price-new">Rp{{ number_format((int) $pc['without'], 0, ',', '.') }}</span>
+                                </span>
+                            </li>
+                            <li>
+                                <span class="price-item">
+                                    <span class="price-item-name">Dengan Foto</span>
+                                    <span class="price-item-badge best">Terlaris</span>
+                                </span>
+                                <span class="price-val">
+                                    <span class="price-new">Rp{{ number_format((int) $pc['with'], 0, ',', '.') }}</span>
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="price-note-wrap"><i class="fa-solid fa-triangle-exclamation"></i> <strong>Penting:</strong> Tema tidak dapat di-<em>mix</em> atau ganti warna</div>
+                        <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
+                            target="_blank" class="btn-card">
+                            <i class="fa-solid fa-circle-dollar-to-slot icon-spacing"></i> Order Sekarang
+                        </a>
+                    </div>
                 </div>
             @endforeach
         </div>
@@ -413,6 +426,14 @@ Undangan Digital
         </div>
     </section>
 
+    @php
+        $defaultPrices = Cache::remember('default_prices', 3600, function () {
+            $with = (int) \App\Models\Price::where('name', 'Dengan Foto')->value('price') ?: 109000;
+            $without = (int) \App\Models\Price::where('name', 'Tanpa Foto')->value('price') ?: 79000;
+            return ['with' => $with, 'without' => $without];
+        });
+        $firstCatPrices = $defaultPrices;
+    @endphp
     <div class="public-modal-overlay" id="publicOrderModal">
         <div class="public-modal">
             <div class="public-modal-header">
@@ -448,11 +469,11 @@ Undangan Digital
                         <div style="display:flex;gap:12px;margin-top:4px;">
                             <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
                                 <input type="radio" name="has_photo" value="1" checked />
-                                <span>Dengan Foto — Rp109.000</span>
+                                <span>Dengan Foto — Rp{{ number_format(($firstCatPrices['with'] ?? 109000), 0, ',', '.') }}</span>
                             </label>
                             <label style="display:flex;align-items:center;gap:6px;cursor:pointer;">
                                 <input type="radio" name="has_photo" value="0" />
-                                <span>Tanpa Foto — Rp79.000</span>
+                                <span>Tanpa Foto — Rp{{ number_format(($firstCatPrices['without'] ?? 79000), 0, ',', '.') }}</span>
                             </label>
                         </div>
                     </div>
@@ -549,36 +570,27 @@ Undangan Digital
                 </h2>
             </div>
             <div class="testimonial-grid">
-                <div class="testimonial-card reveal" data-delay="0">
+                @forelse($testimonials as $ti => $t)
+                <div class="testimonial-card reveal" data-delay="{{ $ti * 100 }}">
                     <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        @for ($s = 0; $s < $t->rating; $s++)
+                            <i class="fa-solid fa-star"></i>
+                        @endfor
                     </div>
-                    <p>"Pelayanan sangat cepat dan desainnya elegan banget! Revisinya juga cepet, cocok buat undangan pernikahan aku."</p>
+                    <p>"{{ $t->content }}"</p>
                     <div class="testimonial-author">
-                        <span class="testimonial-name">— Sarah</span>
-                        <span class="testimonial-role">Wedding</span>
+                        <div class="testimonial-avatar">{{ substr($t->name, 0, 1) }}</div>
+                        <div>
+                            <span class="testimonial-name">{{ $t->name }}</span>
+                            @if($t->role)
+                                <span class="testimonial-role">{{ $t->role }}</span>
+                            @endif
+                        </div>
                     </div>
                 </div>
-                <div class="testimonial-card reveal" data-delay="100">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p>"Harga bersahabat, hasilnya mewah! Temen-temen pada bilang undangan ulang tahun anakku keren banget. Recommended!"</p>
-                    <div class="testimonial-author">
-                        <span class="testimonial-name">— Dewi</span>
-                        <span class="testimonial-role">Birthday</span>
-                    </div>
-                </div>
-                <div class="testimonial-card reveal" data-delay="200">
-                    <div class="testimonial-stars">
-                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
-                    </div>
-                    <p>"Prosesnya cepet banget, kurang dari 24 jam udah jadi. Revisi sampe puas, makasih Va Invite!"</p>
-                    <div class="testimonial-author">
-                        <span class="testimonial-name">— Rina</span>
-                        <span class="testimonial-role">Aqiqah</span>
-                    </div>
-                </div>
+                @empty
+                <p style="color:#64748b;text-align:center;grid-column:1/-1;">Belum ada testimoni.</p>
+                @endforelse
             </div>
         </div>
     </section>
@@ -604,60 +616,19 @@ Undangan Digital
                 </h2>
             </div>
             <div class="faq-list">
+                @forelse($faqs as $fi => $f)
                 <div class="faq-item reveal">
                     <button class="faq-question" type="button">
-                        <span>Apa itu undangan digital?</span>
+                        <span><i class="fa-regular fa-circle-question" style="margin-right:10px;color:#f59e0b;"></i>{{ $f->question }}</span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="faq-answer">
-                        Undangan digital adalah undangan berbentuk website\/link yang bisa dikirim via WhatsApp, Instagram, atau media lainnya. Tamu cukup klik link untuk melihat info acara, galeri foto, lokasi, dan konfirmasi kehadiran secara online.
+                        {{ $f->answer }}
                     </div>
                 </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" type="button">
-                        <span>Apakah bisa revisi? Berapa kali?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Tentu! Revisi bisa dilakukan tanpa batas sampai kamu benar-benar puas. Kami akan revisi sampai hari H acara kamu.
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" type="button">
-                        <span>Berapa lama proses pengerjaannya?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Proses pengerjaan kami sangat cepat, yakni antara 10 hingga 24 jam kerja setelah data lengkap kami terima.
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" type="button">
-                        <span>Berapa lama masa aktif undangannya?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Undangan digital aktif selama 1 tahun penuh sejak tanggal pembuatan. Tamu bisa akses kapan saja tanpa khawatir link mati.
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" type="button">
-                        <span>Bagaimana cara mengirimkan foto?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Setelah order, kamu bisa kirim foto via WhatsApp. Format bebas (JPEG, PNG), kami akan atur tata letaknya biar makin elegan.
-                    </div>
-                </div>
-                <div class="faq-item reveal">
-                    <button class="faq-question" type="button">
-                        <span>Apakah tema bisa di-mix atau ganti warna?</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </button>
-                    <div class="faq-answer">
-                        Tema tidak bisa di-mix atau diganti warna. Setiap tema sudah dirancang secara khusus dengan konsep yang matang agar hasilnya tetap maksimal.
-                    </div>
-                </div>
+                @empty
+                <p style="color:#64748b;text-align:center;">Belum ada FAQ.</p>
+                @endforelse
             </div>
         </div>
     </section>
@@ -722,14 +693,14 @@ Undangan Digital
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2025 Va Invite. All rights reserved.</p>
+                <p>© {{ date('Y') }} Va Invite. All rights reserved.</p>
                 <p>linktr.ee/VaDesignn</p>
             </div>
         </div>
     </footer>
 
     <a href="https://wa.me/{{ $whatsapp_number }}?text=Halo%20Va%20Invite!%20Saya%20mau%20order%20undangan%20digital%20nih%20%F0%9F%99%8F"
-        target="_blank" rel="noopener" class="wa-float" aria-label="Chat WhatsApp">
+        target="_blank" rel="noopener" class="wa-float" aria-label="Order via WhatsApp">
         <i class="fa-brands fa-whatsapp" style="font-size: 1.5rem"></i>
         <span class="wa-float-label">Order via WA</span>
     </a>

@@ -5,154 +5,187 @@ namespace App\Http\Controllers;
 use App\Models\Price;
 use App\Models\Order;
 use App\Models\User;
+use App\Models\Testimonial;
+use App\Models\Faq;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Cache;
 
 class PublicController extends Controller
 {
     public function index()
     {
-        $admin = User::first();
-        $linktree = $admin ? $admin->linktree_url : config('app.linktree_fallback');
+        try {
+            $admin = User::first();
+            $linktree = $admin ? $admin->linktree_url : config('app.linktree_fallback');
 
-        return view('index', [
-            'whatsapp_number' => $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback')),
-            'linktree' => $linktree
-        ]);
+            $testimonials = Cache::remember('home_testimonials', 3600, function () {
+                return Testimonial::where('is_active', true)->orderBy('sort_order')->get();
+            });
+            $faqs = Cache::remember('home_faqs', 3600, function () {
+                return Faq::where('is_active', true)->orderBy('sort_order')->get();
+            });
+
+            return view('index', [
+                'whatsapp_number' => $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback')),
+                'linktree' => $linktree,
+                'testimonials' => $testimonials,
+                'faqs' => $faqs,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Homepage error: ' . $e->getMessage());
+            return view('index', [
+                'whatsapp_number' => $this->formatWaNumber(config('app.whatsapp_fallback')),
+                'linktree' => config('app.linktree_fallback'),
+                'testimonials' => collect([]),
+                'faqs' => collect([]),
+            ]);
+        }
     }
 
     public function orderTheme(Request $request, $slug)
     {
-        $themeName = $request->query('name', $slug);
-        $themeCategory = $request->query('category', 'Umum');
-        $themeLink = $request->query('link', '');
+        try {
+            $themeName = $request->query('name', $slug);
+            $themeCategory = $request->query('category', 'Umum');
+            $themeLink = $request->query('link', '');
 
-        Order::create([
-            'price_id'       => null,
-            'client_name'    => null,
-            'client_wa'      => null,
-            'total_price'    => null,
-            'status'         => 'pending',
-            'custom_note'    => "Minat tema via WhatsApp",
-            'theme_slug'     => $slug,
-            'theme_name'     => $themeName,
-            'theme_category' => $themeCategory,
-            'theme_link'     => $themeLink,
-        ]);
+            Order::create([
+                'price_id'       => null,
+                'client_name'    => null,
+                'client_wa'      => null,
+                'total_price'    => null,
+                'status'         => 'pending',
+                'custom_note'    => "Minat tema via WhatsApp",
+                'theme_slug'     => $slug,
+                'theme_name'     => $themeName,
+                'theme_category' => $themeCategory,
+                'theme_link'     => $themeLink,
+            ]);
 
-        $admin = User::first();
-        $cleanWa = $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback'));
+            $admin = User::first();
+            $cleanWa = $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback'));
 
-        $messageText = "Halo Va Invite! 👋\n\n"
-            . "Saya tertarik dengan tema undangan berikut:\n"
-            . "▪️ *Tema:* " . $themeName . "\n"
-            . "▪️ *Kategori:* " . $themeCategory . "\n"
-            . "▪️ *Link Preview:* " . $themeLink . "\n\n"
-            . "Saya mau order undangan digital ini. Mohon info selanjutnya ya!";
+            $messageText = "Halo Va Invite! 👋\n\n"
+                . "Saya tertarik dengan tema undangan berikut:\n"
+                . "▪️ *Tema:* " . $themeName . "\n"
+                . "▪️ *Kategori:* " . $themeCategory . "\n"
+                . "▪️ *Link Preview:* " . $themeLink . "\n\n"
+                . "Saya mau order undangan digital ini. Mohon info selanjutnya ya!";
 
-        $encodedMessage = urlencode($messageText);
+            $encodedMessage = urlencode($messageText);
 
-        $waUrl = "https://api.whatsapp.com/send?phone={$cleanWa}&text={$encodedMessage}";
+            $waUrl = "https://api.whatsapp.com/send?phone={$cleanWa}&text={$encodedMessage}";
 
-        return redirect()->route('public.order.confirmation', ['wa_url' => urlencode($waUrl)]);
+            return redirect()->route('public.order.confirmation', ['wa_url' => urlencode($waUrl)]);
+        } catch (\Exception $e) {
+            Log::error('Order theme error: ' . $e->getMessage());
+            return redirect()->route('home')->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
+        }
     }
 
     public function orderForm(Request $request, $slug)
     {
-        $themeName = $request->query('name', $slug);
-        $themeCategory = $request->query('category', 'Umum');
-        $themeLink = $request->query('link', '');
+        try {
+            $themeName = $request->query('name', $slug);
+            $themeCategory = $request->query('category', 'Umum');
+            $themeLink = $request->query('link', '');
 
-        $admin = User::first();
-        $cleanWa = $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback'));
+            $admin = User::first();
+            $cleanWa = $this->formatWaNumber($admin?->whatsapp_number ?? config('app.whatsapp_fallback'));
 
-        $priceWith = Price::where('category', $themeCategory)->where('name', 'Dengan Foto')->value('price') ?? 109000;
-        $priceWithout = Price::where('category', $themeCategory)->where('name', 'Tanpa Foto')->value('price') ?? 79000;
+            $priceWith = Price::where('category', $themeCategory)->where('name', 'Dengan Foto')->value('price') ?? 109000;
+            $priceWithout = Price::where('category', $themeCategory)->where('name', 'Tanpa Foto')->value('price') ?? 79000;
 
-        return view('order-form', [
-            'slug'            => $slug,
-            'category'        => $themeCategory,
-            'themeName'       => $themeName,
-            'themeLink'       => $themeLink,
-            'whatsapp_number' => $cleanWa,
-            'priceWith'       => $priceWith,
-            'priceWithout'    => $priceWithout,
-        ]);
+            return view('order-form', [
+                'slug'            => $slug,
+                'category'        => $themeCategory,
+                'themeName'       => $themeName,
+                'themeLink'       => $themeLink,
+                'whatsapp_number' => $cleanWa,
+                'priceWith'       => $priceWith,
+                'priceWithout'    => $priceWithout,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Order form error: ' . $e->getMessage());
+            return redirect()->route('home')->with('error', 'Terjadi kesalahan. Silakan coba lagi.');
+        }
     }
 
     public function storeOrder(Request $request)
     {
-        $request->validate([
-            'theme_category'          => 'required|string|max:255',
-            'theme_name'              => 'required|string|max:255',
-            'theme_slug'              => 'nullable|string|max:255',
-            'theme_link'              => 'nullable|string',
-            'has_photo'               => 'required|in:0,1',
-            'client_name'             => 'required|string|max:255',
-            'client_wa'               => 'required|string|min:10|max:15|regex:/^[0-9]+$/',
-            'data_mempelai_pria_panggilan'   => 'nullable|string|max:255',
-            'data_mempelai_wanita_panggilan' => 'nullable|string|max:255',
-            'data_mempelai_pria_lengkap'     => 'nullable|string|max:255',
-            'data_mempelai_wanita_lengkap'   => 'nullable|string|max:255',
-            'data_mempelai_ortu_pria'        => 'nullable|string|max:255',
-            'data_mempelai_ortu_wanita'      => 'nullable|string|max:255',
-            'acara_nama_1'            => 'required_with:acara_tanggal_1|nullable|string|max:255',
-            'acara_tanggal_1'         => 'required_with:acara_nama_1|nullable|date|after_or_equal:today',
-            'acara_waktu_1'           => 'nullable|string|max:10',
-            'acara_waktu_selesai_1'   => 'nullable|string|max:10',
-            'acara_zona_1'            => 'nullable|string|max:10',
-            'acara_lokasi_1'          => 'nullable|string|max:255',
-            'acara_alamat_1'          => 'nullable|string',
-            'acara_maps_1'            => 'nullable|string|max:500',
-            'acara_nama_2'            => 'nullable|string|max:255',
-            'acara_tanggal_2'         => 'nullable|date',
-            'acara_waktu_2'           => 'nullable|string|max:10',
-            'acara_waktu_selesai_2'   => 'nullable|string|max:10',
-            'acara_zona_2'            => 'nullable|string|max:10',
-            'acara_lokasi_2'          => 'nullable|string|max:255',
-            'acara_alamat_2'          => 'nullable|string',
-            'acara_maps_2'            => 'nullable|string|max:500',
-            'acara_nama_3'            => 'nullable|string|max:255',
-            'acara_tanggal_3'         => 'nullable|date',
-            'acara_waktu_3'           => 'nullable|string|max:10',
-            'acara_waktu_selesai_3'   => 'nullable|string|max:10',
-            'acara_zona_3'            => 'nullable|string|max:10',
-            'acara_lokasi_3'          => 'nullable|string|max:255',
-            'acara_alamat_3'          => 'nullable|string',
-            'acara_maps_3'            => 'nullable|string|max:500',
-            'love_story_1'            => 'nullable|string',
-            'love_story_2'            => 'nullable|string',
-            'love_story_3'            => 'nullable|string',
-            'love_story_4'            => 'nullable|string',
-            'kado_digital_bank_1'     => 'nullable|string|max:255',
-            'kado_digital_an_1'       => 'nullable|string|max:255',
-            'kado_digital_norek_1'    => 'nullable|string|max:100',
-            'kado_digital_bank_2'     => 'nullable|string|max:255',
-            'kado_digital_an_2'       => 'nullable|string|max:255',
-            'kado_digital_norek_2'    => 'nullable|string|max:100',
-            'kado_digital_bank_3'     => 'nullable|string|max:255',
-            'kado_digital_an_3'       => 'nullable|string|max:255',
-            'kado_digital_norek_3'    => 'nullable|string|max:100',
-            'kado_fisik_nama'         => 'nullable|string|max:255',
-            'kado_fisik_wa'           => 'nullable|string|min:10|max:15|regex:/^[0-9]+$/',
-            'kado_fisik_alamat'       => 'nullable|string',
-            'backsound_link'          => 'nullable|string|max:500',
-            'backsound_judul'         => 'nullable|string|max:255',
-            'backsound_live'          => 'nullable|in:0,1',
-            'turut_mengundang'        => 'nullable|string',
-            'fotos'                   => 'nullable|array',
-            'fotos.*'                 => 'file|image|mimes:jpeg,png,jpg,webp|max:1024',
-        ]);
+        try {
+            $request->validate([
+                'theme_category'          => 'required|string|max:255',
+                'theme_name'              => 'required|string|max:255',
+                'theme_slug'              => 'nullable|string|max:255',
+                'theme_link'              => 'nullable|string',
+                'has_photo'               => 'required|in:0,1',
+                'client_name'             => 'required|string|max:255',
+                'client_wa'               => 'required|string|min:10|max:15|regex:/^[0-9]+$/',
+                'data_mempelai_pria_panggilan'   => 'nullable|string|max:255',
+                'data_mempelai_wanita_panggilan' => 'nullable|string|max:255',
+                'data_mempelai_pria_lengkap'     => 'nullable|string|max:255',
+                'data_mempelai_wanita_lengkap'   => 'nullable|string|max:255',
+                'data_mempelai_ortu_pria'        => 'nullable|string|max:255',
+                'data_mempelai_ortu_wanita'      => 'nullable|string|max:255',
+                'acara_nama_1'            => 'required_with:acara_tanggal_1|nullable|string|max:255',
+                'acara_tanggal_1'         => 'required_with:acara_nama_1|nullable|date|after_or_equal:today',
+                'acara_waktu_1'           => 'nullable|string|max:10',
+                'acara_waktu_selesai_1'   => 'nullable|string|max:10',
+                'acara_zona_1'            => 'nullable|string|max:10',
+                'acara_lokasi_1'          => 'nullable|string|max:255',
+                'acara_alamat_1'          => 'nullable|string',
+                'acara_maps_1'            => 'nullable|string|max:500',
+                'acara_nama_2'            => 'nullable|string|max:255',
+                'acara_tanggal_2'         => 'nullable|date',
+                'acara_waktu_2'           => 'nullable|string|max:10',
+                'acara_waktu_selesai_2'   => 'nullable|string|max:10',
+                'acara_zona_2'            => 'nullable|string|max:10',
+                'acara_lokasi_2'          => 'nullable|string|max:255',
+                'acara_alamat_2'          => 'nullable|string',
+                'acara_maps_2'            => 'nullable|string|max:500',
+                'acara_nama_3'            => 'nullable|string|max:255',
+                'acara_tanggal_3'         => 'nullable|date',
+                'acara_waktu_3'           => 'nullable|string|max:10',
+                'acara_waktu_selesai_3'   => 'nullable|string|max:10',
+                'acara_zona_3'            => 'nullable|string|max:10',
+                'acara_lokasi_3'          => 'nullable|string|max:255',
+                'acara_alamat_3'          => 'nullable|string',
+                'acara_maps_3'            => 'nullable|string|max:500',
+                'love_story_1'            => 'nullable|string',
+                'love_story_2'            => 'nullable|string',
+                'love_story_3'            => 'nullable|string',
+                'love_story_4'            => 'nullable|string',
+                'kado_digital_bank_1'     => 'nullable|string|max:255',
+                'kado_digital_an_1'       => 'nullable|string|max:255',
+                'kado_digital_norek_1'    => 'nullable|string|max:100',
+                'kado_digital_bank_2'     => 'nullable|string|max:255',
+                'kado_digital_an_2'       => 'nullable|string|max:255',
+                'kado_digital_norek_2'    => 'nullable|string|max:100',
+                'kado_digital_bank_3'     => 'nullable|string|max:255',
+                'kado_digital_an_3'       => 'nullable|string|max:255',
+                'kado_digital_norek_3'    => 'nullable|string|max:100',
+                'kado_fisik_nama'         => 'nullable|string|max:255',
+                'kado_fisik_wa'           => 'nullable|string|min:10|max:15|regex:/^[0-9]+$/',
+                'kado_fisik_alamat'       => 'nullable|string',
+                'backsound_link'          => 'nullable|string|max:500',
+                'backsound_judul'         => 'nullable|string|max:255',
+                'backsound_live'          => 'nullable|in:0,1',
+                'turut_mengundang'        => 'nullable|string',
+                'fotos'                   => 'nullable|array',
+                'fotos.*'                 => 'file|image|mimes:jpeg,png,jpg,webp|max:1024',
+            ]);
 
-        $hasPhoto = (bool) $request->has_photo;
-        $priceName = $hasPhoto ? 'Dengan Foto' : 'Tanpa Foto';
-        $priceRecord = \App\Models\Price::where('category', $request->theme_category)
-            ->where('name', $priceName)
-            ->first();
-        $price = $priceRecord ? $priceRecord->price : ($hasPhoto ? 109000 : 79000);
-        $priceId = $priceRecord ? $priceRecord->id : null;
+            $hasPhoto = (bool) $request->has_photo;
+            $priceName = $hasPhoto ? 'Dengan Foto' : 'Tanpa Foto';
+            $priceRecord = \App\Models\Price::where('category', $request->theme_category)
+                ->where('name', $priceName)
+                ->first();
+            $price = $priceRecord ? $priceRecord->price : ($hasPhoto ? 109000 : 79000);
+            $priceId = $priceRecord ? $priceRecord->id : null;
 
-        $deadline = $request->acara_tanggal_1 ?? $request->acara_tanggal_2 ?? $request->acara_tanggal_3 ?? null;
+            $deadline = $request->acara_tanggal_1 ?? $request->acara_tanggal_2 ?? $request->acara_tanggal_3 ?? null;
 
         $formData = [
             'mempelai_pria_panggilan'   => $request->data_mempelai_pria_panggilan,
@@ -308,39 +341,59 @@ class PublicController extends Controller
             'harga' => number_format($price, 0, ',', '.'),
             'mempelai' => ($mempelaiPria && $mempelaiWanita) ? "{$mempelaiPria} & {$mempelaiWanita}" : null,
         ]);
+        } catch (\Exception $e) {
+            Log::error('Store order error: ' . $e->getMessage());
+            return redirect()->route('public.order.form', ['slug' => $request->theme_slug ?? ''])->with('error', 'Terjadi kesalahan saat menyimpan order. Silakan coba lagi.');
+        }
     }
 
     public function confirmation(Request $request)
     {
-        return view('order-confirmation', [
-            'wa_url'   => urldecode($request->query('wa_url', '')),
-            'wa_phone' => strip_tags($request->query('wa_phone', '')),
-            'order_id' => strip_tags($request->query('order_id', '')),
-            'nama'     => strip_tags($request->query('nama', '')),
-            'tema'     => strip_tags($request->query('tema', '')),
-            'kategori' => strip_tags($request->query('kategori', '')),
-            'opsi'     => strip_tags($request->query('opsi', '')),
-            'harga'    => strip_tags($request->query('harga', '')),
-            'mempelai' => strip_tags($request->query('mempelai', '')),
-        ]);
+        try {
+            $orderId = strip_tags($request->query('order_id', ''));
+            $order = $orderId ? Order::find($orderId) : null;
+            $formData = [];
+            if ($order && $order->form_data) {
+                $decoded = json_decode($order->form_data, true);
+                $formData = is_array($decoded) ? $decoded : [];
+            }
+
+            return view('order-confirmation', [
+                'wa_url'   => urldecode($request->query('wa_url', '')),
+                'wa_phone' => strip_tags($request->query('wa_phone', '')),
+                'order_id' => $orderId,
+                'nama'     => strip_tags($request->query('nama', '')),
+                'tema'     => strip_tags($request->query('tema', '')),
+                'kategori' => strip_tags($request->query('kategori', '')),
+                'opsi'     => strip_tags($request->query('opsi', '')),
+                'harga'    => strip_tags($request->query('harga', '')),
+                'mempelai' => strip_tags($request->query('mempelai', '')),
+                'formData' => $formData,
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Confirmation error: ' . $e->getMessage());
+            return redirect()->route('home');
+        }
     }
 
-    public function trackOrder()
+    public function trackOrder(Request $request)
     {
-        return view('track-order', ['orders' => null]);
-    }
-
-    public function trackOrderLookup(Request $request)
-    {
-        $request->validate(['phone' => 'required|string|max:20|regex:/^[0-9]+$/']);
-        $phone = $request->phone;
-        $orders = Order::where('client_wa', $phone)
-            ->orWhere('client_wa', 'like', $phone . '%')
-            ->orWhere('id', $phone)
-            ->latest()
-            ->get();
-
-        return view('track-order', ['orders' => $orders, 'phone' => $phone]);
+        try {
+            $phone = $request->query('phone', '');
+            if ($phone) {
+                $request->validate(['phone' => 'required|string|max:20|regex:/^[0-9]+$/']);
+                $orders = Order::where('client_wa', $phone)
+                    ->orWhere('client_wa', 'like', $phone . '%')
+                    ->orWhere('id', $phone)
+                    ->latest()
+                    ->get();
+                return view('track-order', ['orders' => $orders, 'phone' => $phone]);
+            }
+            return view('track-order', ['orders' => null, 'phone' => '']);
+        } catch (\Exception $e) {
+            Log::error('Track order error: ' . $e->getMessage());
+            return redirect()->route('home');
+        }
     }
 
     private function formatWaNumber(?string $number): string
